@@ -1,0 +1,336 @@
+.daily {
+  padding: var(--space-24) 0;
+  background: var(--color-surface-light);
+  position: relative;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.08);
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.08);
+}
+
+.daily__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.daily__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.daily__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  line-height: 1.1;
+}
+
+.daily__sub {
+  font-size: var(--text-lg);
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+/* ── Daily Quest Card ────────────────────────────────────── */
+.daily__quest-card {
+  background: #FFFFFF;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 4px 0 #17191C;
+  margin-top: var(--space-4);
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.quest-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quest-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--color-ink);
+}
+
+.quest-status {
+  font-size: 0.75rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+.quest-xp-badge {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  border: 1.5px solid var(--color-ink);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+.quest-progress-bar {
+  height: 8px;
+  background: rgba(23, 25, 28, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: var(--space-4);
+}
+
+.quest-progress-bar .fill {
+  height: 100%;
+  background: var(--color-yellow);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  border: 1px solid var(--color-ink);
+}
+
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.quest-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.quest-item:hover {
+  background: #FFFFFF;
+  border-color: var(--color-ink);
+  transform: translateY(-1px);
+}
+
+.quest-item.done {
+  border-color: var(--color-ink);
+  background: rgba(245, 255, 56, 0.2);
+}
+
+.quest-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.quest-item.done .quest-check {
+  background: var(--color-yellow);
+}
+
+.quest-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quest-item-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.3;
+}
+
+.quest-item.done .quest-item-title {
+  color: var(--color-graphite);
+  text-decoration: line-through;
+}
+
+.quest-item-cat {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-graphite);
+  font-weight: 700;
+}
+
+.quest-item-xp {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+/* ── Right Column: Streak & POTD ─────────────────────────── */
+.daily__right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.daily__streak-card {
+  background: #FFFFFF;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 4px 0 #17191C;
+}
+
+.streak-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.streak-fire {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.flame-emoji {
+  font-size: 2.2rem;
+}
+
+.streak-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.streak-count {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.streak-lbl {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-graphite);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.streak-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 4px;
+  background: #F7F8FA;
+  border: 1px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-md);
+  font-size: 0.72rem;
+  gap: 2px;
+}
+
+.day-pill.active {
+  background: var(--color-yellow);
+  border: 1.5px solid var(--color-ink);
+  color: var(--color-ink);
+  font-weight: 800;
+}
+
+.day-pill.today {
+  box-shadow: 0 0 12px rgba(245, 255, 56, 0.8);
+}
+
+.d-name { font-family: var(--font-mono); font-size: 0.65rem; color: var(--color-graphite); }
+.d-date { font-weight: 800; color: var(--color-ink); }
+.d-check { font-size: 0.7rem; color: var(--color-ink); font-weight: 800; }
+
+/* Problem of the Day */
+.daily__potd-card {
+  background: #FFFFFF;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 4px 0 #17191C;
+}
+
+.potd-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.potd-desc {
+  font-size: 0.9rem;
+  color: var(--color-graphite);
+  line-height: 1.55;
+}
+
+.potd-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  flex-wrap: wrap;
+}
+
+.meta-diff.hard {
+  background: rgba(255, 80, 80, 0.15);
+  color: #D32F2F;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.meta-topic { color: var(--color-graphite); font-weight: 600; }
+.meta-accept { color: var(--color-ink); font-weight: 700; }
+
+.potd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 800;
+  padding: 12px 20px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 2px 0 #17191C;
+  margin-top: 4px;
+  transition: all 0.2s ease;
+}
+
+.potd-btn:hover {
+  background: #E8F218;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #17191C;
+}
+
+@media (max-width: 960px) {
+  .daily__grid { grid-template-columns: 1fr; }
+}

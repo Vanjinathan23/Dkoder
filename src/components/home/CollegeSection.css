@@ -1,0 +1,270 @@
+.college {
+  padding: var(--space-20) 0;
+  background: var(--color-surface-light);
+  position: relative;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.08);
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.08);
+}
+
+.college__card {
+  background: #FFFFFF;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 6px 0 #17191C;
+}
+
+.college__grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+.college__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.college__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  line-height: 1.15;
+}
+
+.college__sub {
+  font-size: var(--text-base);
+  color: var(--color-graphite);
+  line-height: 1.65;
+}
+
+.college__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+.college__feat {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.feat-icon {
+  font-size: 1.4rem;
+  background: #FFFDF5;
+  border: 1.5px solid var(--color-ink);
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(23, 25, 28, 0.06);
+}
+
+.feat-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.feat-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--color-ink);
+}
+
+.feat-desc {
+  font-size: 0.85rem;
+  color: var(--color-graphite);
+  line-height: 1.4;
+}
+
+.college__cta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.college__primary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 800;
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 3px 0 #17191C, 0 6px 18px rgba(245, 255, 56, 0.4);
+  transition: all 0.2s ease;
+}
+
+.college__primary-btn:hover {
+  background: #E8F218;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #17191C, 0 10px 24px rgba(245, 255, 56, 0.6);
+}
+
+.college__demo-note {
+  font-size: 0.8rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+/* ── Right Dashboard Mockup ──────────────────────────────── */
+.college__dashboard-mockup {
+  background: #FFFDF5;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  box-shadow: 0 12px 30px rgba(23, 25, 28, 0.08);
+}
+
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.1);
+}
+
+.dash-title {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-ink);
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.dash-status {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  border: 1px solid var(--color-ink);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.dash-stat {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dash-stat .val {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.dash-stat .lbl {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.2;
+}
+
+.dash-stat .sub {
+  font-size: 0.64rem;
+  color: var(--color-graphite);
+}
+
+.dash-cohorts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #FFFFFF;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-md);
+  padding: 12px;
+}
+
+.cohorts-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-graphite);
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.cohort-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cohort-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.78rem;
+}
+
+.c-name {
+  width: 140px;
+  color: var(--color-ink);
+  font-size: 0.74rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(23, 25, 28, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.bar-fill.lime   { background: var(--color-yellow); border: 1px solid var(--color-ink); }
+.bar-fill.violet { background: var(--color-violet); }
+.bar-fill.orange { background: var(--color-orange); }
+
+.c-pct {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  width: 32px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1024px) {
+  .college__grid { grid-template-columns: 1fr; }
+}

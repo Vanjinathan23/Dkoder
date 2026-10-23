@@ -1,0 +1,572 @@
+.qlab {
+  padding: var(--space-24) 0;
+  background: var(--color-white);
+  position: relative;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.08);
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.08);
+}
+
+.qlab__header {
+  max-width: 680px;
+  margin-bottom: var(--space-12);
+}
+
+.qlab__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.qlab__sub {
+  font-size: var(--text-lg);
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+/* ── IDE Layout Split ────────────────────────────────────── */
+.qlab__studio {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  border-radius: var(--radius-xl);
+  background: #FFFFFF;
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 6px 0 #17191C;
+  overflow: hidden;
+  min-height: 580px;
+}
+
+/* ── Left Sidebar Question Vault ─────────────────────────── */
+.qlab__sidebar {
+  border-right: 1.5px solid rgba(23, 25, 28, 0.12);
+  background: #FFFDF5;
+  display: flex;
+  flex-direction: column;
+}
+
+.qlab__sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 18px;
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.1);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.qlab__sidebar-header .lbl {
+  color: var(--color-graphite);
+}
+
+.qlab__sidebar-header .count {
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.qlab__question-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.qlab__q-item {
+  padding: 14px 18px;
+  border: none;
+  background: transparent;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.qlab__q-item:hover {
+  background: rgba(245, 255, 56, 0.15);
+}
+
+.qlab__q-item.active {
+  background: #FFFFFF;
+  border-left: 4px solid var(--color-ink);
+  box-shadow: inset 0 0 0 1px rgba(23, 25, 28, 0.08);
+}
+
+.qlab__q-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.qlab__q-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  line-height: 1.3;
+}
+
+.qlab__diff-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.qlab__diff-badge.easy   { background: var(--color-yellow); color: var(--color-ink); border: 1px solid var(--color-ink); }
+.qlab__diff-badge.medium { background: rgba(255, 122, 41, 0.15); color: #E65100; font-weight: 700; }
+.qlab__diff-badge.hard   { background: rgba(255, 95, 86, 0.15);  color: #D32F2F; font-weight: 700; }
+
+.qlab__q-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+.qlab__q-companies {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.qlab__company-pill {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--color-ink);
+  background: rgba(23, 25, 28, 0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.qlab__sidebar-footer {
+  padding: 12px 16px;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.1);
+  background: #F7F8FA;
+}
+
+.qlab__view-all-link {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+}
+
+.qlab__view-all-link:hover {
+  color: var(--color-violet);
+}
+
+/* ── Right Workspace Pane ────────────────────────────────── */
+.qlab__editor-pane {
+  display: flex;
+  flex-direction: column;
+  background: #17191C;
+}
+
+.qlab__toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: #202328;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.qlab__tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.qlab__tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #A0A5AF;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qlab__tab-btn:hover {
+  color: #FFFFFF;
+}
+
+.qlab__tab-btn.active {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border-color: var(--color-yellow);
+}
+
+.qlab__lang-selector {
+  display: flex;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 3px;
+  border-radius: var(--radius-md);
+}
+
+.qlab__lang-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #8E95A0;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.qlab__lang-btn.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+/* ── Code Window ─────────────────────────────────────────── */
+.qlab__code-window {
+  flex: 1;
+  overflow: auto;
+  min-height: 280px;
+  background: #17191C;
+}
+
+.qlab__code-scroll {
+  display: flex;
+  min-width: 100%;
+}
+
+.qlab__line-numbers {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 12px;
+  background: #1C1E23;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  user-select: none;
+}
+
+.line-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: #555A64;
+  line-height: 1.6;
+  text-align: right;
+  min-width: 22px;
+}
+
+.qlab__code-content {
+  margin: 0;
+  padding: 16px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #F4F2EB;
+  flex: 1;
+}
+
+.code-line {
+  white-space: pre;
+}
+
+/* ── Problem Spec Window ─────────────────────────────────── */
+.qlab__spec-window {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 320px;
+  background: #FFFFFF;
+  color: var(--color-ink);
+}
+
+.spec-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+
+.spec-desc {
+  font-size: 0.95rem;
+  color: var(--color-graphite);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.spec-section {
+  margin-bottom: 16px;
+}
+
+.spec-subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.spec-pre {
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-md);
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-ink);
+}
+
+.spec-list {
+  padding-left: 20px;
+  font-size: 0.88rem;
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+/* ── Telemetry Window ────────────────────────────────────── */
+.qlab__telemetry-window {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  background: #FFFFFF;
+}
+
+.telemetry-card {
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.telemetry-card .lbl {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-graphite);
+  font-weight: 700;
+}
+
+.telemetry-card .val {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.telemetry-card .val.lime {
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  padding: 2px 6px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.telemetry-card .val.violet { color: var(--color-violet); }
+
+.telemetry-card .note {
+  font-size: 0.74rem;
+  color: var(--color-graphite);
+}
+
+/* ── Test Tray Console ───────────────────────────────────── */
+.qlab__test-tray {
+  border-top: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: #111216;
+  padding: 12px 18px;
+}
+
+.qlab__test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.test-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.test-tab {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #C0C5CF;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.test-tab.active {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border-color: var(--color-yellow);
+}
+
+.test-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.run-code-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 0 #17191C;
+}
+
+.run-code-btn:hover {
+  background: #E8F218;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #17191C;
+}
+
+.run-code-btn.running {
+  background: var(--color-violet);
+  color: #fff;
+  border-color: var(--color-violet);
+}
+
+.run-code-btn.done {
+  background: #27C93F;
+  color: #fff;
+  border-color: #27C93F;
+}
+
+.btn-spinner {
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+.submit-solution-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #F4F2EB;
+  text-decoration: none;
+  padding: 7px 16px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.submit-solution-btn:hover {
+  border-color: var(--color-yellow);
+  color: var(--color-yellow);
+}
+
+.qlab__test-console {
+  background: #090A0D;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+}
+
+.console-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #A0A5AF;
+}
+
+.console-preview .lbl {
+  color: #6C727D;
+}
+
+.console-preview code {
+  color: #FFFFFF;
+}
+
+.console-result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.console-verdict {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.verdict-tag {
+  background: #27C93F;
+  color: #000;
+  font-weight: 800;
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+.verdict-speed, .verdict-mem {
+  font-size: 0.72rem;
+  color: #A0A5AF;
+}
+
+.console-case {
+  display: flex;
+  gap: 8px;
+}
+
+.console-case .lbl {
+  color: #6C727D;
+  width: 70px;
+}
+
+.console-case code.lime {
+  color: var(--color-yellow);
+  font-weight: 700;
+}
+
+@media (max-width: 960px) {
+  .qlab__studio { grid-template-columns: 1fr; }
+  .qlab__sidebar { max-height: 240px; border-right: none; border-bottom: 1.5px solid rgba(23, 25, 28, 0.1); }
+  .qlab__telemetry-window { grid-template-columns: 1fr; }
+}

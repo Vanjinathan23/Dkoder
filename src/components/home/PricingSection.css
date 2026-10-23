@@ -1,0 +1,326 @@
+.pricing {
+  padding: var(--space-24) 0;
+  background: var(--color-white);
+  position: relative;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.08);
+}
+
+.pricing__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto var(--space-12) auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.pricing__sub {
+  font-size: var(--text-lg);
+  color: var(--color-graphite);
+  line-height: 1.6;
+  margin-bottom: var(--space-6);
+}
+
+/* ── Billing Switcher ────────────────────────────────────── */
+.pricing__toggle-wrap {
+  display: inline-flex;
+  background: #F7F8FA;
+  border: 1.5px solid rgba(23, 25, 28, 0.12);
+  padding: 4px;
+  border-radius: var(--radius-full);
+}
+
+.pricing__toggle-btn {
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-graphite);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.pricing__toggle-btn.active {
+  background: #FFFFFF;
+  color: var(--color-ink);
+  box-shadow: 0 2px 8px rgba(23, 25, 28, 0.1);
+  border: 1px solid rgba(23, 25, 28, 0.1);
+}
+
+.save-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  border: 1px solid var(--color-ink);
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+}
+
+/* ── Pricing Grid ────────────────────────────────────────── */
+.pricing__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-6);
+  margin-bottom: var(--space-16);
+}
+
+.pricing__card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(23, 25, 28, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(23, 25, 28, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pricing__card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-ink);
+  box-shadow: 0 16px 36px rgba(23, 25, 28, 0.1);
+}
+
+.pricing__card.popular {
+  border: 2.5px solid var(--color-ink);
+  background: #FFFDF5;
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.1), 0 4px 0 #17191C, 0 0 24px rgba(245, 255, 56, 0.3);
+}
+
+.pricing__popular-ribbon {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(245, 255, 56, 0.5);
+  white-space: nowrap;
+}
+
+.pricing__card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pricing__tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: var(--color-graphite);
+  letter-spacing: 0.08em;
+}
+
+.pricing__name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.pricing__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+.pricing__currency {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.pricing__amount {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  letter-spacing: -0.04em;
+}
+
+.pricing__period {
+  font-size: 0.85rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+.pricing__billing-note {
+  font-size: 0.74rem;
+  color: var(--color-graphite);
+}
+
+.pricing__divider {
+  height: 1px;
+  background: rgba(23, 25, 28, 0.08);
+  margin: var(--space-4) 0;
+}
+
+.pricing__feature-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+
+.pricing__feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: var(--color-ink);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.check-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-ink);
+}
+
+.pricing__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 12px 18px;
+  border-radius: var(--radius-lg);
+  border: 1.5px solid var(--color-ink);
+  transition: all 0.2s ease;
+}
+
+.pricing__btn--default {
+  background: #F7F8FA;
+  color: var(--color-ink);
+}
+.pricing__btn--default:hover {
+  background: var(--color-yellow);
+}
+
+.pricing__btn--lime {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 3px 0 #17191C, 0 6px 16px rgba(245, 255, 56, 0.4);
+}
+.pricing__btn--lime:hover {
+  background: #E8F218;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #17191C, 0 10px 20px rgba(245, 255, 56, 0.6);
+}
+
+.pricing__btn--violet {
+  background: #F7F8FA;
+  color: var(--color-ink);
+}
+.pricing__btn--violet:hover {
+  background: var(--color-yellow);
+}
+
+.pricing__btn--orange {
+  background: #F7F8FA;
+  color: var(--color-ink);
+}
+.pricing__btn--orange:hover {
+  background: var(--color-yellow);
+}
+
+/* ── Institutional Banner ────────────────────────────────── */
+.pricing__institutional-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFDF5;
+  border: 2px solid var(--color-ink);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  gap: var(--space-8);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.08), 0 4px 0 #17191C;
+}
+
+.inst-left {
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inst-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.inst-desc {
+  font-size: 0.94rem;
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+.inst-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 800;
+  text-decoration: none;
+  padding: 14px 24px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-ink);
+  box-shadow: 0 3px 0 #17191C, 0 6px 18px rgba(245, 255, 56, 0.4);
+  transition: all 0.2s ease;
+}
+
+.inst-btn:hover {
+  background: #E8F218;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #17191C, 0 10px 24px rgba(245, 255, 56, 0.6);
+}
+
+@media (max-width: 1200px) {
+  .pricing__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .pricing__grid { grid-template-columns: 1fr; }
+  .pricing__institutional-card { flex-direction: column; text-align: center; }
+}

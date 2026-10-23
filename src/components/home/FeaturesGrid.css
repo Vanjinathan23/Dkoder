@@ -1,0 +1,460 @@
+.bento {
+  padding: var(--space-24) 0;
+  background: var(--color-surface-light);
+  position: relative;
+  border-top: 1.5px solid rgba(23, 25, 28, 0.08);
+  border-bottom: 1.5px solid rgba(23, 25, 28, 0.08);
+}
+
+.bento__header {
+  max-width: 680px;
+  margin-bottom: var(--space-12);
+}
+
+.bento__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-4);
+  line-height: 1.1;
+}
+
+.bento__sub {
+  font-size: var(--text-lg);
+  color: var(--color-graphite);
+  line-height: 1.6;
+}
+
+/* ── Bento Layout ────────────────────────────────────────── */
+.bento__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.bento__card {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(23, 25, 28, 0.12);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(23, 25, 28, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bento__card:hover {
+  border-color: var(--color-ink);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(23, 25, 28, 0.1), 0 0 0 2px var(--color-yellow);
+}
+
+.bento__card--hero {
+  grid-column: span 2;
+}
+
+.bento__card--wide {
+  grid-column: span 3;
+}
+
+.bento__card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.bento__badge-mono {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-graphite);
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.bento__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-2);
+}
+
+.bento__desc {
+  font-size: 0.92rem;
+  color: var(--color-graphite);
+  line-height: 1.6;
+  margin-bottom: var(--space-4);
+}
+
+/* ── Interactive Company Filter ──────────────────────────── */
+.bento__filter-row {
+  display: flex;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.bento__filter-btn {
+  background: var(--color-surface-light);
+  border: 1px solid rgba(23, 25, 28, 0.15);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bento__filter-btn:hover {
+  border-color: var(--color-ink);
+  background: #FFFFFF;
+}
+
+.bento__filter-btn.active {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border: 1.5px solid var(--color-ink);
+  box-shadow: 0 2px 8px rgba(245, 255, 56, 0.5);
+}
+
+.bento__telemetry-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+
+.bento__telemetry-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bento__telemetry-stat .lbl {
+  font-size: 0.72rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+.bento__telemetry-stat .val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.bento__telemetry-stat .val.lime {
+  color: #17191C;
+  background: var(--color-yellow);
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.bento__telemetry-stat .val.violet {
+  color: var(--color-violet-dim);
+}
+
+/* ── AI Diagnostics Widget ───────────────────────────────── */
+.bento__ai-widget {
+  background: #FFFDF5;
+  border: 1.5px solid rgba(136, 117, 255, 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: auto;
+}
+
+.bento__ai-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+
+.bento__ai-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.bento__ai-tag.old {
+  background: rgba(255, 80, 80, 0.12);
+  color: #D32F2F;
+}
+
+.bento__ai-tag.optimal {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  border: 1px solid var(--color-ink);
+}
+
+.bento__ai-arrow {
+  color: var(--color-graphite);
+  font-size: 0.75rem;
+}
+
+.bento__ai-diff {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  background: #FFFFFF;
+  border: 1px solid rgba(23, 25, 28, 0.08);
+  padding: 8px 10px;
+  border-radius: 6px;
+}
+
+.diff-minus { color: #D32F2F; font-weight: 600; }
+.diff-plus  { color: #2E7D32; font-weight: 700; }
+
+.bento__ai-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+/* ── Code Runner Widget ──────────────────────────────────── */
+.bento__run-btn {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-ink);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 0 #17191C;
+}
+
+.bento__run-btn:hover {
+  background: #E8F218;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 #17191C;
+}
+
+.bento__run-btn.running {
+  background: var(--color-violet);
+  color: #fff;
+}
+
+.bento__run-btn.success {
+  background: #27C93F;
+  color: #fff;
+}
+
+.bento__mini-ide {
+  background: #17191C;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: auto;
+  border: 1px solid var(--color-ink);
+}
+
+.bento__ide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 12px;
+  background: #22252A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bento__file-tab {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-yellow);
+  font-weight: 700;
+}
+
+.bento__runtime-pill {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: #8E95A0;
+}
+
+.bento__code-preview {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: #E2E1D9;
+  overflow-x: auto;
+}
+
+/* ── Gauge / Readiness Score ─────────────────────────────── */
+.bento__gauge-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: auto;
+}
+
+.bento__gauge-circle {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+}
+
+.bento__gauge-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.bento__gauge-bg {
+  fill: none;
+  stroke: rgba(23, 25, 28, 0.08);
+  stroke-width: 8;
+}
+
+.bento__gauge-fill {
+  fill: none;
+  stroke: var(--color-ink);
+  stroke-width: 8;
+  stroke-dasharray: 264;
+  stroke-dashoffset: 35;
+  stroke-linecap: round;
+}
+
+.bento__gauge-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.bento__gauge-text .score {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--color-ink);
+}
+
+.bento__gauge-text .rank {
+  font-size: 0.52rem;
+  font-family: var(--font-mono);
+  color: var(--color-ink);
+  background: var(--color-yellow);
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: 800;
+}
+
+.bento__gauge-breakdown {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bento__gauge-breakdown .metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bento__gauge-breakdown .lbl {
+  font-size: 0.7rem;
+  color: var(--color-graphite);
+  font-weight: 600;
+}
+
+.bento__gauge-breakdown .bar {
+  height: 5px;
+  background: rgba(23, 25, 28, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bento__gauge-breakdown .fill {
+  height: 100%;
+  background: var(--color-ink);
+  border-radius: 3px;
+}
+
+/* ── Full Pipeline Simulation ────────────────────────────── */
+.bento__pipeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.bento__step {
+  background: #FFFDF5;
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.bento__step.complete {
+  border-color: #27C93F;
+  background: rgba(39, 201, 63, 0.06);
+}
+
+.bento__step.active {
+  border-color: var(--color-ink);
+  background: var(--color-yellow);
+  box-shadow: 0 4px 12px rgba(245, 255, 56, 0.4);
+}
+
+.bento__step-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 4px;
+}
+
+.bento__step-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--color-ink);
+  margin-bottom: 4px;
+}
+
+.bento__step-meta {
+  font-size: 0.78rem;
+  color: var(--color-graphite);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .bento__grid { grid-template-columns: 1fr; }
+  .bento__card--hero, .bento__card--wide { grid-column: span 1; }
+  .bento__pipeline { grid-template-columns: 1fr; }
+}
