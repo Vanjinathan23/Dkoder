@@ -22,28 +22,43 @@
 /* ── Floating callout bubbles when drawer is closed ──────────────────────── */
 .companion-bubble-dock {
   position: absolute;
-  top: -50px;
-  right: 0;
+  top: -46px;
+  right: 4px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   z-index: 100;
-  animation: bubbleFloat 3s infinite ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.22s;
+}
+
+/* Reveal cleanly only when user hovers or focuses on the character anchor */
+.companion-character-anchor:hover .companion-bubble-dock,
+.companion-character-anchor:focus-within .companion-bubble-dock {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 .companion-bubble-hint {
   background: #0F1115;
   color: #FEF08A;
-  padding: 7px 13px;
-  border-radius: 14px;
+  padding: 6px 12px;
+  border-radius: 12px;
   font-family: var(--font-display, sans-serif);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: -0.01em;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4), 0 0 16px rgba(245, 158, 11, 0.25);
+  gap: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 12px rgba(245, 158, 11, 0.25);
   border: 1px solid rgba(245, 158, 11, 0.4);
   white-space: nowrap;
   cursor: pointer;
@@ -51,8 +66,8 @@
 }
 
 .companion-bubble-hint:hover {
-  transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5), 0 0 22px rgba(245, 158, 11, 0.45);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.5), 0 0 18px rgba(245, 158, 11, 0.45);
 }
 
 .tour-trigger-bubble {

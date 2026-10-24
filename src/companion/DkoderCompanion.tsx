@@ -628,8 +628,8 @@ export default function DkoderCompanion() {
               title="Start Interactive Guided Tour of DKODER"
               aria-label="Start interactive website tour"
             >
-              <Compass size={14} className="bubble-icon spin-slow text-amber-400" />
-              <span className="bubble-text">Take Website Tour</span>
+              <Compass size={13} className="bubble-icon spin-slow text-amber-400" />
+              <span className="bubble-text">Take Tour</span>
             </button>
 
             {/* Chat Companion Launch Pill */}
