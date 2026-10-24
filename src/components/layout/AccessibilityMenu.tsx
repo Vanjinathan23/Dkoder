@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Languages, Eye, Sun, Moon, Volume2, X } from 'lucide-react'
+import React, { useState, useEffect, useRef } from 'react'
+import { Eye, Sun, Moon, Volume2, X, Check, RotateCcw } from 'lucide-react'
 import './AccessibilityMenu.css'
 
 interface AccessibilityState {
@@ -34,6 +34,8 @@ const LANGUAGES = [
 
 export default function AccessibilityMenu() {
   const [open, setOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
   const [config, setConfig] = useState<AccessibilityState>(() => {
     try {
       const saved = localStorage.getItem('lms-accessibility-storage')
@@ -43,7 +45,7 @@ export default function AccessibilityMenu() {
     }
   })
 
-  // Apply state to DOM
+  // Apply state to DOM & persistent storage
   useEffect(() => {
     try {
       localStorage.setItem('lms-accessibility-storage', JSON.stringify(config))
@@ -66,6 +68,18 @@ export default function AccessibilityMenu() {
     }
   }, [config])
 
+  // Close on outside click
+  useEffect(() => {
+    if (!open) return
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleOutsideClick)
+    return () => document.removeEventListener('mousedown', handleOutsideClick)
+  }, [open])
+
   // ESC key listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -83,11 +97,11 @@ export default function AccessibilityMenu() {
   }
 
   return (
-    <>
+    <div className="a11y-container" ref={menuRef}>
       <button
         type="button"
-        className="a11y-trigger"
-        onClick={() => setOpen(true)}
+        className={`a11y-trigger ${open ? 'a11y-trigger--active' : ''}`}
+        onClick={() => setOpen(prev => !prev)}
         aria-label="Open accessibility options"
         aria-haspopup="dialog"
         aria-expanded={open}
@@ -98,14 +112,23 @@ export default function AccessibilityMenu() {
       </button>
 
       {open && (
-        <div
-          className="a11y-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Accessibility Settings"
-          onClick={() => setOpen(false)}
-        >
-          <div className="a11y-panel" onClick={e => e.stopPropagation()}>
+        <>
+          {/* Backdrop starting below navbar so navbar remains visible & usable */}
+          <div
+            className="a11y-backdrop"
+            onClick={() => setOpen(false)}
+            aria-hidden="true"
+          />
+
+          {/* Anchored popover card with pinned header/footer and scrollable body */}
+          <div
+            className="a11y-card"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Accessibility Settings"
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Header: Always visible */}
             <div className="a11y-head">
               <div className="a11y-head-info">
                 <div className="a11y-head-icon" aria-hidden="true">
@@ -113,29 +136,40 @@ export default function AccessibilityMenu() {
                 </div>
                 <div>
                   <h3 className="a11y-title">Accessibility Options</h3>
-                  <p className="a11y-subtitle">Saved on this device across DKODER</p>
+                  <p className="a11y-subtitle">Preferences saved across DKODER</p>
                 </div>
               </div>
               <button
                 type="button"
                 className="a11y-close"
                 onClick={() => setOpen(false)}
-                aria-label="Close accessibility modal"
+                aria-label="Close accessibility options"
               >
                 <X size={18} />
               </button>
             </div>
 
+            {/* Body: Scrollable, properly sized */}
             <div className="a11y-body">
-              {/* Theme Toggle */}
+              {/* Display Theme */}
               <div className="a11y-group">
                 <span className="a11y-label">Display Theme</span>
                 <div className="a11y-row">
                   <div className="a11y-row-text">
                     <span className="a11y-row-title">
-                      {config.theme === 'light' ? 'Bright / Light Mode' : 'Cinematic Dark Mode'}
+                      {config.theme === 'light' ? (
+                        <>
+                          <Sun size={15} className="a11y-icon-inline" />
+                          <span>Bright / Light Mode</span>
+                        </>
+                      ) : (
+                        <>
+                          <Moon size={15} className="a11y-icon-inline" />
+                          <span>Cinematic Dark Mode</span>
+                        </>
+                      )}
                     </span>
-                    <span className="a11y-row-desc">Optimized for high contrast and read balance</span>
+                    <span className="a11y-row-desc">High contrast color balance</span>
                   </div>
                   <button
                     type="button"
@@ -167,7 +201,7 @@ export default function AccessibilityMenu() {
                 </div>
               </div>
 
-              {/* Language Selection */}
+              {/* Interface & Audio Language */}
               <div className="a11y-group">
                 <span className="a11y-label">Interface & Audio Language</span>
                 <div className="a11y-lang-grid" role="radiogroup" aria-label="Preferred language">
@@ -184,7 +218,7 @@ export default function AccessibilityMenu() {
                 </div>
               </div>
 
-              {/* Speech / Reader Speed */}
+              {/* Speech & Audio Speed */}
               <div className="a11y-group">
                 <span className="a11y-label">Screen Reader & Audio Speed</span>
                 <div className="a11y-segmented" role="radiogroup" aria-label="Audio speed">
@@ -202,25 +236,28 @@ export default function AccessibilityMenu() {
               </div>
             </div>
 
+            {/* Footer: Always visible */}
             <div className="a11y-foot">
               <button
                 type="button"
                 className="a11y-reset"
                 onClick={() => setConfig(DEFAULT_STATE)}
               >
-                Reset Defaults
+                <RotateCcw size={13} style={{ marginRight: '0.35rem' }} />
+                <span>Reset Defaults</span>
               </button>
               <button
                 type="button"
                 className="a11y-save-btn"
                 onClick={() => setOpen(false)}
               >
-                Done
+                <Check size={14} style={{ marginRight: '0.35rem' }} />
+                <span>Done</span>
               </button>
             </div>
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   )
 }
