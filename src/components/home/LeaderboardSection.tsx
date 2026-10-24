@@ -14,21 +14,21 @@ interface Student {
 }
 
 const NATIONAL_LEADERS: Student[] = [
-  { rank: 1, name: 'Aarav Sharma', college: 'IIT Bombay', avatar: '👨‍💻', xp: 14250, solved: 642, streak: 84, target: 'Google SDE', badge: 'Grandmaster' },
-  { rank: 2, name: 'Priya Iyer', college: 'NIT Trichy', avatar: '👩‍💻', xp: 13890, solved: 618, streak: 92, target: 'Microsoft', badge: 'Grandmaster' },
-  { rank: 3, name: 'Rohan Verma', college: 'BITS Pilani', avatar: '⚡', xp: 13420, solved: 595, streak: 67, target: 'Amazon', badge: 'Master' },
-  { rank: 4, name: 'Ananya Deshmukh', college: 'COEP Pune', avatar: '🎯', xp: 12100, solved: 540, streak: 45, target: 'Flipkart', badge: 'Master' },
-  { rank: 5, name: 'Karthik Raja', college: 'Anna University', avatar: '🚀', xp: 11850, solved: 522, streak: 51, target: 'Meta E4', badge: 'Expert' },
-  { rank: 6, name: 'Sneha Patel', college: 'DA-IICT', avatar: '✨', xp: 11400, solved: 498, streak: 38, target: 'NVIDIA', badge: 'Expert' },
-  { rank: 7, name: 'Aditya Nair', college: 'VJTI Mumbai', avatar: '🔥', xp: 10950, solved: 476, streak: 29, target: 'Uber', badge: 'Expert' },
+  { rank: 1, name: 'Aarav Sharma', college: 'Chennai Institute of Tech (CIT)', avatar: '👨‍💻', xp: 14250, solved: 642, streak: 84, target: 'Google SDE', badge: 'Grandmaster' },
+  { rank: 2, name: 'Priya Iyer', college: 'Sri Eshwar College of Engineering', avatar: '👩‍💻', xp: 13890, solved: 618, streak: 92, target: 'Microsoft', badge: 'Grandmaster' },
+  { rank: 3, name: 'Rohan Verma', college: 'Velammal Engineering College', avatar: '⚡', xp: 13420, solved: 595, streak: 67, target: 'Amazon', badge: 'Master' },
+  { rank: 4, name: 'Ananya Deshmukh', college: 'Dhaanish Ahmed College of Eng', avatar: '🎯', xp: 12100, solved: 540, streak: 45, target: 'ServiceNow', badge: 'Master' },
+  { rank: 5, name: 'Karthik Raja', college: 'PSNA College of Engineering', avatar: '🚀', xp: 11850, solved: 522, streak: 51, target: 'TCS Prime', badge: 'Expert' },
+  { rank: 6, name: 'Sneha Patel', college: 'Kongu Engineering College', avatar: '✨', xp: 11400, solved: 498, streak: 38, target: 'Infosys SP', badge: 'Expert' },
+  { rank: 7, name: 'Aditya Nair', college: 'Anna University CEG', avatar: '🔥', xp: 10950, solved: 476, streak: 29, target: 'Flipkart', badge: 'Expert' },
 ]
 
 const STREAK_LEADERS: Student[] = [
-  { rank: 1, name: 'Priya Iyer', college: 'NIT Trichy', avatar: '👩‍💻', xp: 13890, solved: 618, streak: 92, target: 'Microsoft', badge: 'Streak Legend' },
-  { rank: 2, name: 'Aarav Sharma', college: 'IIT Bombay', avatar: '👨‍💻', xp: 14250, solved: 642, streak: 84, target: 'Google SDE', badge: 'Centurion' },
-  { rank: 3, name: 'Tanmay Kulkarni', college: 'PES Univ', avatar: '🛡️', xp: 9800, solved: 410, streak: 76, target: 'Infosys SP', badge: 'Consistent' },
-  { rank: 4, name: 'Rohan Verma', college: 'BITS Pilani', avatar: '⚡', xp: 13420, solved: 595, streak: 67, target: 'Amazon', badge: 'Master' },
-  { rank: 5, name: 'Deepika S.', college: 'RVCE Bangalore', avatar: '🌟', xp: 10200, solved: 445, streak: 62, target: 'TCS Digital', badge: 'Consistent' },
+  { rank: 1, name: 'Priya Iyer', college: 'Sri Eshwar College of Engineering', avatar: '👩‍💻', xp: 13890, solved: 618, streak: 92, target: 'Microsoft', badge: 'Streak Legend' },
+  { rank: 2, name: 'Aarav Sharma', college: 'Chennai Institute of Tech (CIT)', avatar: '👨‍💻', xp: 14250, solved: 642, streak: 84, target: 'Google SDE', badge: 'Centurion' },
+  { rank: 3, name: 'Tanmay Kulkarni', college: 'Kongu Engineering College', avatar: '🛡️', xp: 9800, solved: 410, streak: 76, target: 'Infosys SP', badge: 'Consistent' },
+  { rank: 4, name: 'Rohan Verma', college: 'Velammal Engineering College', avatar: '⚡', xp: 13420, solved: 595, streak: 67, target: 'Amazon', badge: 'Master' },
+  { rank: 5, name: 'Deepika S.', college: 'PSNA College of Engineering', avatar: '🌟', xp: 10200, solved: 445, streak: 62, target: 'TCS Digital', badge: 'Consistent' },
 ]
 
 export default function LeaderboardSection() {
@@ -49,13 +49,12 @@ export default function LeaderboardSection() {
       <div className="container">
         {/* Header */}
         <div className="leaderboard__header">
-          <div className="tag tag--violet">NATIONAL BENCHMARK</div>
+          <div className="tag tag--violet">STUDENT RANKINGS</div>
           <h2 id="leaderboard-heading" className="leaderboard__heading">
-            Campus Placement Leaderboard
+            Campus Leaderboard
           </h2>
           <p className="leaderboard__sub">
-            Benchmark your problem-solving velocity against 45,000+ candidates across India.
-            Top performers receive direct profile dispatches to recruitment partners.
+            Benchmark your solved problems and daily streaks with students across 150+ colleges nationwide.
           </p>
         </div>
 

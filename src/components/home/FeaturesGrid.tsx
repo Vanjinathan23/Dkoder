@@ -6,10 +6,12 @@ export default function FeaturesGrid() {
   const [codeRunState, setCodeRunState] = useState<'idle' | 'running' | 'success'>('idle')
 
   const companyStats: Record<string, { count: number; dsa: string; freq: string }> = {
-    Google: { count: 380, dsa: 'Dynamic Programming & Graphs', freq: 'Very High (14 drives in 2024)' },
-    Amazon: { count: 420, dsa: 'Trees, Arrays & Leadership Ops', freq: 'Peak Season Active' },
-    Microsoft: { count: 320, dsa: 'Strings, Linked Lists & System', freq: 'Intern & FTE Active' },
-    TCS: { count: 510, dsa: 'Aptitude, Numerical & CodeVita', freq: 'National Qualifier Test' },
+    Google: { count: 380, dsa: 'Dynamic Programming & Graphs', freq: 'Google Online Assessment (OA)' },
+    Amazon: { count: 420, dsa: 'Trees, Arrays & Leadership Ops', freq: 'SDE-1 Hiring Screen' },
+    Microsoft: { count: 320, dsa: 'Binary Trees & System Architecture', freq: 'Codility Campus Challenge' },
+    TCS: { count: 510, dsa: 'Aptitude, Strings & CodeVita', freq: 'TCS National Qualifier Test (NQT)' },
+    Infosys: { count: 480, dsa: 'InfyTQ Advanced & Dynamic Prog', freq: 'HackWithInfy / SP Track' },
+    ServiceNow: { count: 215, dsa: 'Cloud Microservices & Complex SQL', freq: 'Cloud Backend Diagnostic' },
   }
 
   const handleSimulateRun = () => {
@@ -25,30 +27,28 @@ export default function FeaturesGrid() {
       <div className="container">
         {/* Section Header */}
         <div className="bento__header">
-          <div className="tag tag--violet">ARCHITECTED FOR RECRUITMENT</div>
+          <div className="tag tag--violet">CORE CAPABILITIES</div>
           <h2 id="bento-heading" className="bento__heading">
-            The Placement Intelligence Suite
+            Everything You Need to Crack Placements
           </h2>
           <p className="bento__sub">
-            Traditional platforms give you generic questions. DKoder gives you the company-calibrated
-            telemetry, live execution runtime, and AI analysis required to clear day-1 rounds.
+            DKoder combines company-tagged problem sets, an instant code compiler, and full-length mock drives in one unified platform.
           </p>
         </div>
 
         {/* Bento Grid */}
         <div className="bento__grid">
-          {/* Card 1: Company-Tagged Intelligence (Large span 2 cols) */}
+          {/* Card 1: Company-Tagged Intelligence */}
           <div className="bento__card bento__card--hero">
             <div className="bento__card-top">
-              <span className="bento__tag tag tag--lime">RECRUITER TELEMETRY</span>
-              <span className="bento__badge-mono">1,200+ TAGGED DATA POINTS</span>
+              <span className="bento__tag tag tag--lime">COMPANY PRACTICE</span>
+              <span className="bento__badge-mono">12,500+ QUESTIONS</span>
             </div>
 
             <div className="bento__card-body">
-              <h3 className="bento__title">Company-Tagged Problem Matrix</h3>
+              <h3 className="bento__title">Company-Tagged Questions</h3>
               <p className="bento__desc">
-                Know the exact frequency, topic distribution, and difficulty curve tested by target companies.
-                Toggle recruiters below to see real verified drive parameters:
+                Practice real interview problems asked by top recruiters. Select a company to view its question bank:
               </p>
 
               {/* Interactive Company Filter Selector */}
@@ -68,30 +68,30 @@ export default function FeaturesGrid() {
               {/* Interactive Telemetry Box */}
               <div className="bento__telemetry-box">
                 <div className="bento__telemetry-stat">
-                  <span className="lbl">Verified Questions</span>
+                  <span className="lbl">Available Questions</span>
                   <span className="val lime">{companyStats[activeCompanyFilter].count}+ Qs</span>
                 </div>
                 <div className="bento__telemetry-stat">
-                  <span className="lbl">Highest Weighted Topic</span>
+                  <span className="lbl">Core Focus Area</span>
                   <span className="val violet">{companyStats[activeCompanyFilter].dsa}</span>
                 </div>
                 <div className="bento__telemetry-stat">
-                  <span className="lbl">Campus Drive Pattern</span>
+                  <span className="lbl">Assessment Track</span>
                   <span className="val">{companyStats[activeCompanyFilter].freq}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Card 2: AI Complexity & Approach Diagnostics */}
+          {/* Card 2: AI Optimization */}
           <div className="bento__card">
             <div className="bento__card-top">
-              <span className="bento__tag tag tag--violet">SYNAPSE AI</span>
+              <span className="bento__tag tag tag--violet">AI FEEDBACK</span>
               <span className="bento__dot live" />
             </div>
-            <h3 className="bento__title">AI Approach Optimization</h3>
+            <h3 className="bento__title">Smart Code Optimization</h3>
             <p className="bento__desc">
-              Instant AST breakdown detects redundant traversal and suggests optimal Big-O bounds.
+              Get instant feedback on time complexity and suggestions to optimize brute-force code.
             </p>
 
             {/* Micro AI Diagnostic Widget */}
@@ -118,18 +118,18 @@ export default function FeaturesGrid() {
           {/* Card 3: Interactive Live Sandboxed Editor */}
           <div className="bento__card">
             <div className="bento__card-top">
-              <span className="bento__tag tag tag--lime">V8 / LLVM RUNTIME</span>
+              <span className="bento__tag tag tag--lime">CODE COMPILER</span>
               <button
                 type="button"
                 className={`bento__run-btn ${codeRunState}`}
                 onClick={handleSimulateRun}
               >
-                {codeRunState === 'running' ? 'Compiling...' : codeRunState === 'success' ? '✓ Passed (14ms)' : '▶ Run Sandbox'}
+                {codeRunState === 'running' ? 'Compiling...' : codeRunState === 'success' ? '✓ Passed (14ms)' : '▶ Run Code'}
               </button>
             </div>
-            <h3 className="bento__title">Zero-Lag Code Execution</h3>
+            <h3 className="bento__title">In-Browser Code Execution</h3>
             <p className="bento__desc">
-              Execute test cases inside micro-virtualized runtimes with isolated memory limits.
+              Write, compile, and run testcases instantly in Python, C++, Java, and TypeScript.
             </p>
 
             {/* Mini Code Simulator Preview */}
@@ -158,12 +158,12 @@ export default function FeaturesGrid() {
           {/* Card 4: Placement Readiness Score */}
           <div className="bento__card">
             <div className="bento__card-top">
-              <span className="bento__tag tag">TELEMETRY GAUGE</span>
-              <span className="bento__badge-mono">TIER-1 VERIFIED</span>
+              <span className="bento__tag tag">PROGRESS</span>
+              <span className="bento__badge-mono">ANALYTICS</span>
             </div>
-            <h3 className="bento__title">Readiness Index</h3>
+            <h3 className="bento__title">Placement Readiness Score</h3>
             <p className="bento__desc">
-              Probabilistic calculation of passing initial assessment cutoff scores.
+              Monitor your accuracy, speed, and topic strengths across hiring criteria.
             </p>
 
             {/* Animated Meter */}
@@ -198,12 +198,12 @@ export default function FeaturesGrid() {
           {/* Card 5: Proctored Drive Simulation (Large span) */}
           <div className="bento__card bento__card--wide">
             <div className="bento__card-top">
-              <span className="bento__tag tag tag--orange">PROCTORED DRIVES</span>
-              <span className="bento__badge-mono">TIME-CONSTRAINED MOCK</span>
+              <span className="bento__tag tag tag--orange">MOCK DRIVES</span>
+              <span className="bento__badge-mono">TIMED SIMULATION</span>
             </div>
-            <h3 className="bento__title">Full-Funnel Placement Simulation</h3>
+            <h3 className="bento__title">Campus Placement Simulations</h3>
             <p className="bento__desc">
-              Mirrors real campus recruitment drives end-to-end: aptitude screen, technical DSA, and core CS questions under strict proctoring.
+              Experience realistic placement rounds: timed aptitude screening, technical coding, and core CS assessments.
             </p>
 
             {/* Pipeline progress simulation */}

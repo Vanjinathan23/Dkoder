@@ -1,0 +1,352 @@
+/* ── DKODER 3D Robot Visual Character Styles ───────────────────────────── */
+
+.dkoder-robot-wrapper {
+  position: relative;
+  width: 135px;
+  height: 168px;
+  cursor: pointer;
+  user-select: none;
+  transform-origin: bottom center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dkoder-robot-wrapper:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.dkoder-robot-wrapper:focus-visible {
+  outline: 3px solid #F59E0B;
+  outline-offset: 4px;
+  border-radius: 28px;
+}
+
+/* 3D Character Stage with Idle Floating */
+.robot-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: robot3dIdleFloat 3.8s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes robot3dIdleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.2deg);
+  }
+}
+
+/* State Reactions */
+.dkoder-robot-wrapper.greeting .robot-3d-stage,
+.dkoder-robot-wrapper.waking .robot-3d-stage {
+  animation: robotWelcomeHop 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes robotWelcomeHop {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-18px) scale(1.08) rotate(-3deg); }
+  65% { transform: translateY(2px) scale(0.96) rotate(1deg); }
+  100% { transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+.dkoder-robot-wrapper.celebrating .robot-3d-stage {
+  animation: robotCelebrateHop 1.2s ease-in-out infinite;
+}
+
+@keyframes robotCelebrateHop {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-16px) scale(1.06) rotate(2deg); }
+}
+
+/* Guiding / Walking Stride */
+.dkoder-robot-wrapper.guiding .robot-3d-stage,
+.dkoder-robot-wrapper.walking .robot-3d-stage {
+  animation: robotWalkStride 0.75s ease-in-out infinite;
+}
+
+@keyframes robotWalkStride {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+
+/* Speaking & Explaining Cadence */
+.dkoder-robot-wrapper.is-speaking .robot-3d-stage,
+.dkoder-robot-wrapper.speaking .robot-3d-stage,
+.dkoder-robot-wrapper.explaining .robot-3d-stage {
+  animation: robotSpeakCadence 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes robotSpeakCadence {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-4px) rotate(0.6deg); }
+}
+
+/* Error State */
+.dkoder-robot-wrapper.error .robot-3d-stage {
+  animation: robotErrorShake 0.6s ease-in-out;
+}
+
+@keyframes robotErrorShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* Ground shadow beneath feet */
+.robot-ground-shadow {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 16px;
+  background: radial-gradient(ellipse at center, rgba(17, 19, 23, 0.38) 0%, rgba(17, 19, 23, 0) 70%);
+  border-radius: 50%;
+  z-index: 1;
+  animation: shadowPulse 3.8s ease-in-out infinite;
+}
+
+@keyframes shadowPulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(-50%) scale(0.85);
+    opacity: 0.45;
+  }
+}
+
+/* 3D Render Image Container */
+.robot-render-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Single 100% Transparent Character Element */
+.robot-render-character {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 10px 20px rgba(23, 25, 28, 0.18));
+  display: block;
+}
+
+/* ── Thought Bubble (floating above head during thinking state) ─────── */
+.robot-thought-bubble {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  background: #17191C;
+  border: 1.5px solid #F59E0B;
+  border-radius: 12px;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 4px 12px rgba(17, 19, 23, 0.35), 0 0 10px rgba(245, 158, 11, 0.3);
+  pointer-events: none;
+  z-index: 10;
+  animation: thoughtFloat 1.8s infinite ease-in-out;
+}
+
+.thought-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #FEF08A;
+  box-shadow: 0 0 4px #FDE047;
+  animation: thoughtBounce 1.2s infinite ease-in-out;
+}
+
+.thought-dot.dot-1 { animation-delay: 0s; }
+.thought-dot.dot-2 { animation-delay: 0.2s; }
+.thought-dot.dot-3 { animation-delay: 0.4s; }
+
+@keyframes thoughtFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes thoughtBounce {
+  0%, 100% { transform: scale(0.8); opacity: 0.4; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ── Speech Waveform (reacting to speech) ────────────────────────────────── */
+.robot-speech-wave {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px 6px;
+  background: rgba(17, 19, 23, 0.88);
+  border: 1px solid #F59E0B;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.4);
+  z-index: 12;
+  pointer-events: none;
+}
+
+.wave-bar {
+  width: 3px;
+  background: #FEF08A;
+  border-radius: 2px;
+  animation: wavePulse 0.5s ease-in-out infinite alternate;
+}
+
+.wave-bar.bar-1 { height: 8px; animation-delay: 0.1s; }
+.wave-bar.bar-2 { height: 14px; animation-delay: 0.25s; }
+.wave-bar.bar-3 { height: 11px; animation-delay: 0.05s; }
+.wave-bar.bar-4 { height: 6px; animation-delay: 0.3s; }
+
+@keyframes wavePulse {
+  0% { transform: scaleY(0.4); opacity: 0.6; }
+  100% { transform: scaleY(1.2); opacity: 1; }
+}
+
+/* ── Error Bubble ──────────────────────────────────────────────────────── */
+.robot-error-bubble {
+  position: absolute;
+  top: -8px;
+  right: 15px;
+  background: #17191C;
+  border: 1.5px solid #EF4444;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+  z-index: 10;
+}
+
+/* ── Listening Audio Halo ───────────────────────────────────────────────── */
+.robot-listening-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.halo-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid #F59E0B;
+  border-radius: 50%;
+  animation: haloRingPulse 1.8s infinite cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ring-2 { animation-delay: 0.5s; }
+.ring-3 { animation-delay: 1.0s; }
+
+@keyframes haloRingPulse {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+/* ── Spatial Pointing Beam Callout ───────────────────────────────────────── */
+.robot-spatial-callout {
+  position: absolute;
+  top: 38%;
+  right: 135px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 20;
+  animation: calloutSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes calloutSlideIn {
+  from { opacity: 0; transform: translateX(12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.callout-beam {
+  width: 28px;
+  height: 2px;
+  background: linear-gradient(90deg, #F59E0B, #FEF08A);
+  box-shadow: 0 0 8px #F59E0B;
+}
+
+.callout-badge {
+  background: #17191C;
+  color: #FEF08A;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1.5px solid #F59E0B;
+  box-shadow: 0 4px 14px rgba(23, 25, 28, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.badge-arrow {
+  font-size: 0.8rem;
+}
+
+/* Target element highlight style */
+.dkoder-robot-highlight-target {
+  outline: 3px solid #F59E0B !important;
+  outline-offset: 8px !important;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.45) !important;
+  transition: all 0.4s ease-in-out !important;
+  border-radius: 12px;
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .robot-3d-stage,
+  .robot-ground-shadow,
+  .halo-ring,
+  .wave-bar {
+    animation: none !important;
+  }
+}
+
+/* ── Mobile Breakpoint (< 640px) ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .dkoder-robot-wrapper {
+    width: 95px;
+    height: 120px;
+  }
+
+  .robot-ground-shadow {
+    width: 65px;
+    height: 12px;
+  }
+
+  .robot-spatial-callout {
+    right: 98px;
+  }
+}

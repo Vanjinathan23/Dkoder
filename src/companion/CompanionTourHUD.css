@@ -1,0 +1,265 @@
+/* ── DKODER Website Tour HUD Styles ──────────────────────────────────────── */
+
+.tour-hud-container {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  background: rgba(15, 17, 21, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(245, 158, 11, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 420px;
+  max-width: 90vw;
+  animation: hudSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+@keyframes hudSlideUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* ── Top Micro Progress Track ───────────────────────────────────────────── */
+.tour-hud-progress-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.tour-hud-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #F59E0B, #FEF08A);
+  box-shadow: 0 0 8px #F59E0B;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Inner Content Row ──────────────────────────────────────────────────── */
+.tour-hud-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+}
+
+/* ── Badge & Title Area ─────────────────────────────────────────────────── */
+.tour-hud-badge-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.tour-hud-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 9999px;
+  padding: 3px 8px;
+  flex-shrink: 0;
+}
+
+.tour-hud-icon {
+  color: #F59E0B;
+}
+
+.tour-hud-step-num {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FEF08A;
+}
+
+.tour-hud-title-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.tour-hud-step-title {
+  font-family: var(--font-display, sans-serif);
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: #F9FAFB;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tour-hud-hint {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  color: #9CA3AF;
+}
+
+/* ── Dots Indicators ────────────────────────────────────────────────────── */
+.tour-hud-dots {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.tour-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.25s ease;
+}
+
+.tour-dot.completed {
+  background: rgba(245, 158, 11, 0.5);
+}
+
+.tour-dot.active {
+  width: 14px;
+  border-radius: 4px;
+  background: #F59E0B;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+/* ── Actions Row ────────────────────────────────────────────────────────── */
+.tour-hud-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.tour-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  color: #D1D5DB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.tour-btn:hover:not(:disabled) {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #F59E0B;
+  color: #FEF08A;
+  transform: translateY(-1px);
+}
+
+.tour-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.play-pause-btn {
+  color: #FEF08A;
+}
+
+.play-pause-btn.is-paused {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: #F59E0B;
+}
+
+.next-step-btn.last-step {
+  background: #10B981;
+  border-color: #10B981;
+  color: #FFFFFF;
+}
+
+.tour-hud-separator {
+  width: 1px;
+  height: 18px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 2px;
+}
+
+.exit-tour-btn {
+  width: auto;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #9CA3AF;
+}
+
+.exit-tour-btn:hover {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-color: #EF4444 !important;
+  color: #EF4444 !important;
+}
+
+.tour-esc-badge {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1px 4px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* ── Tour Section Spotlight Ring ────────────────────────────────────────── */
+.dkoder-tour-spotlight-active {
+  position: relative;
+  outline: 3px solid #F59E0B !important;
+  outline-offset: 12px !important;
+  border-radius: 18px !important;
+  box-shadow: 0 0 0 10px rgba(245, 158, 11, 0.12), 0 0 35px rgba(245, 158, 11, 0.35) !important;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  animation: tourSpotlightPulse 2.4s infinite ease-in-out !important;
+}
+
+@keyframes tourSpotlightPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0.15), 0 0 30px rgba(245, 158, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 0 16px rgba(245, 158, 11, 0.04), 0 0 48px rgba(245, 158, 11, 0.5);
+  }
+}
+
+/* ── Mobile Breakpoint (< 640px) ────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .tour-hud-container {
+    min-width: 0;
+    width: calc(100vw - 24px);
+    bottom: 16px;
+  }
+
+  .tour-hud-content {
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .tour-hud-dots {
+    display: none;
+  }
+
+  .tour-hud-step-title {
+    font-size: 0.78rem;
+  }
+
+  .tour-btn {
+    width: 28px;
+    height: 28px;
+  }
+}

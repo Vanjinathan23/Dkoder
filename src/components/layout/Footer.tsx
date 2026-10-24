@@ -1,66 +1,118 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { MessageCircle, Mail, ShieldCheck, CheckCircle2 } from 'lucide-react'
 import './Footer.css'
 
-const FOOTER_LINKS = {
-  Product: [
-    { label: 'Question Lab',    href: 'https://dkoder.co.in/practice' },
-    { label: 'Career Tracks',   href: '#tracks'  },
-    { label: 'Mock Interviews', href: 'https://dkoder.co.in/practice' },
-    { label: 'Leaderboard',     href: 'https://dkoder.co.in/practice' },
-  ],
-  Company: [
-    { label: 'About',   href: 'https://dkoder.co.in' },
-    { label: 'Blog',    href: 'https://dkoder.co.in' },
-    { label: 'Careers', href: 'https://dkoder.co.in' },
-    { label: 'Contact', href: 'https://dkoder.co.in' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy',    href: 'https://dkoder.co.in' },
-    { label: 'Terms of Service',  href: 'https://dkoder.co.in' },
-    { label: 'Refund Policy',     href: 'https://dkoder.co.in' },
-  ],
-}
+const FOOTER_GROUPS = [
+  {
+    title: 'For Students',
+    links: [
+      { label: 'MCQ & Coding Practice', to: '/practice' },
+      { label: 'Live Coding Lab', to: '/practice/coding' },
+      { label: 'Platform Arena (TCS / Infy)', to: '/practice/platforms' },
+      { label: 'Sprint Challenges', to: '/challenges' },
+      { label: 'National XP Leaderboard', to: '/leaderboard' },
+      { label: 'Engineering Courses', to: '/learn/courses' },
+      { label: 'Live Events & Workshops', to: '/learn/events' },
+      { label: 'Resource Hub & Videos', to: '/learn/resources' },
+      { label: 'Verify a Certificate', to: '/learn/certificates/verify' },
+      { label: 'Pricing & Plans', to: '/pricing' }
+    ]
+  },
+  {
+    title: 'For Institutions',
+    links: [
+      { label: 'Dkoder for Colleges', to: '/colleges' },
+      { label: 'Apply for Campus MOU', to: '/partner-mou' },
+      { label: 'Host a Hackathon on Campus', to: '/hackathons/100-days' },
+      { label: 'Benefits for Institutions', to: '/hackathons/100-days/benefits' },
+      { label: 'Institutional Sign-In', to: '/auth/institution' }
+    ]
+  },
+  {
+    title: 'Programmes',
+    links: [
+      { label: 'All Hackathons', to: '/hackathons' },
+      { label: '100 Days of Sustainability', to: '/hackathons/100-days' },
+      { label: 'Final Year Projects Mentorship', to: '/final-year-projects' },
+      { label: 'Topic-Wise Certifications', to: '/certifications/topic' },
+      { label: 'Technology Certifications', to: '/certifications/technology' }
+    ]
+  },
+  {
+    title: 'Help & Support',
+    links: [
+      { label: 'Sign In to Account', to: '/auth/login' },
+      { label: 'Create Student Account', to: '/auth/signup' },
+      { label: 'WhatsApp Live Support', href: 'https://wa.me/919944648710?text=Hi%20Dkoder%20team%2C%20I%20have%20a%20question.' },
+      { label: 'Contact Support via Email', href: 'mailto:support@dkoder.co.in' }
+    ]
+  }
+]
+
+const ACCREDITATIONS = [
+  { name: 'MSME', sub: 'Govt. of India', code: 'Registered' },
+  { name: 'DPIIT Startup India', sub: 'Department for Promotion', code: 'Recognized' },
+  { name: 'ISO 9001:2015', sub: 'Quality Management', code: 'Certified' },
+  { name: 'MCA', sub: 'Ministry of Corporate Affairs', code: 'CIN Active' },
+  { name: 'AICTE', sub: 'Internship Portal', code: 'Empaneled' },
+  { name: 'NCS', sub: 'National Career Service', code: 'Authorized' },
+  { name: 'NAPS', sub: 'Apprenticeship Scheme', code: 'Partner' },
+  { name: 'Skill India', sub: 'Skill Mission', code: 'Aligned' },
+]
 
 export default function Footer() {
   return (
     <footer className="footer" role="contentinfo">
       <div className="container">
+        {/* Top Link Columns */}
         <div className="footer__top">
-          {/* Brand */}
+          {/* Brand Col */}
           <div className="footer__brand">
-            <div className="footer__logo">
+            <Link to="/" className="footer__logo">
               <span className="footer__logo-dk">DK</span>
               <span className="footer__logo-oder">oder</span>
-            </div>
+            </Link>
             <p className="footer__tagline">
-              The Career Engine — built for India's most ambitious engineers.
+              The Placement LMS for Engineering Colleges Across India. 12,500+ verified company questions,
+              in-browser code execution, salary band filters, and board-defensible examination integrity.
             </p>
-            <div className="footer__social">
-              <a href="https://dkoder.co.in" aria-label="Twitter" className="footer__social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
+            <div className="footer__direct-contact">
+              <a
+                href="https://wa.me/919944648710?text=Hi%20Dkoder%20team%2C%20I%20have%20a%20question."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__contact-link"
+              >
+                <MessageCircle size={15} style={{ color: '#25D366' }} />
+                <span>Chat on WhatsApp: +91 99446 48710</span>
               </a>
-              <a href="https://dkoder.co.in" aria-label="LinkedIn" className="footer__social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                </svg>
-              </a>
-              <a href="https://dkoder.co.in" aria-label="Instagram" className="footer__social-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-                </svg>
+              <a href="mailto:support@dkoder.co.in" className="footer__contact-link">
+                <Mail size={15} style={{ color: '#F5FF38' }} />
+                <span>support@dkoder.co.in</span>
               </a>
             </div>
           </div>
 
-          {/* Links */}
-          {Object.entries(FOOTER_LINKS).map(([group, links]) => (
-            <div key={group} className="footer__col">
-              <h3 className="footer__col-heading">{group}</h3>
+          {/* 4 Link Groups */}
+          {FOOTER_GROUPS.map(group => (
+            <div key={group.title} className="footer__col">
+              <h4 className="footer__col-heading">{group.title}</h4>
               <ul className="footer__col-list">
-                {links.map(l => (
-                  <li key={l.label}>
-                    <a href={l.href} className="footer__col-link">{l.label}</a>
+                {group.links.map(link => (
+                  <li key={link.label}>
+                    {link.to ? (
+                      <Link to={link.to} className="footer__col-link">{link.label}</Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="footer__col-link"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -68,12 +120,25 @@ export default function Footer() {
           ))}
         </div>
 
+        {/* Accreditations & Recognitions */}
+        <div className="footer__accreditations">
+          <div className="footer__acc-title">Government & Industry Recognitions</div>
+          <div className="footer__acc-grid">
+            {ACCREDITATIONS.map(acc => (
+              <div key={acc.name} className="footer__acc-badge">
+                <CheckCircle2 size={16} style={{ color: '#F5FF38' }} />
+                <span className="footer__acc-name">{acc.name}</span>
+                <span className="footer__acc-sub">{acc.sub}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
         <div className="footer__bottom">
-          <p className="footer__copy">© 2025 DKoder. All rights reserved.</p>
+          <p className="footer__copy">© 2026 DKoder (CIN Registered). All rights reserved.</p>
           <p className="footer__made">
-            Made with{' '}
-            <span aria-label="passion" role="img">⚡</span>
-            {' '}for India's next million engineers.
+            Built with <span style={{ color: '#F5FF38' }}>⚡</span> for ambitious engineering students across India.
           </p>
         </div>
       </div>

@@ -1,49 +1,24 @@
-import { useState, Suspense, lazy } from 'react'
 import { motion } from 'framer-motion'
+import HeroPlacementStudio from './HeroPlacementStudio'
 import './HeroEngine.css'
 
-const CareerOrbitCanvas = lazy(() => import('../3d/CareerOrbitCanvas'))
-
-const STATS = [
-  { value: '1,200+', label: 'Company-Tagged Questions', sub: 'Verified across 2023-2026' },
-  { value: '94%',    label: 'Placement Clearance Rate', sub: 'Tier-1 & Tier-2 Colleges' },
-  { value: '50+',    label: 'Active Recruiters',        sub: 'FAANG, Unicorns & PSUs' },
-]
-
 const TICKER_ITEMS = [
-  { company: 'Google', role: 'SDE-2', ctc: '₹38 LPA', badge: 'Offer Released' },
-  { company: 'Microsoft', role: 'SWE Intern', ctc: '₹1.25L/mo', badge: 'Interview Cleared' },
-  { company: 'Amazon', role: 'SDE-1', ctc: '₹32 LPA', badge: 'Offer Released' },
-  { company: 'Meta', role: 'Frontend Engineer', ctc: '₹44 LPA', badge: 'Offer Released' },
-  { company: 'Infosys', role: 'Specialist Programmer', ctc: '₹9.5 LPA', badge: 'Drive Cleared' },
-  { company: 'TCS', role: 'Prime Developer', ctc: '₹9.0 LPA', badge: 'Drive Cleared' },
-  { company: 'Flipkart', role: 'SDE-1', ctc: '₹26 LPA', badge: 'Offer Released' },
-  { company: 'NVIDIA', role: 'AI Systems', ctc: '₹42 LPA', badge: 'Offer Released' },
-]
-
-const HERO_COMPANIES = [
-  { name: 'Google', color: '#17191C' },
-  { name: 'Microsoft', color: '#8875FF' },
-  { name: 'Amazon', color: '#FF7A29' },
-  { name: 'Meta', color: '#17191C' },
-  { name: 'NVIDIA', color: '#68B000' },
-  { name: 'Flipkart', color: '#8875FF' },
+  { company: 'TCS NQT', role: 'Advanced Coding', ctc: '₹11.5 LPA Prime', badge: 'Verified' },
+  { company: 'Infosys', role: 'InfyTQ / HackWithInfy', ctc: '₹9.5 LPA SP', badge: 'Verified' },
+  { company: 'Google', role: 'SDE-II / OA', ctc: '₹42 LPA', badge: 'Verified' },
+  { company: 'Microsoft', role: 'SWE / Cloud Intern', ctc: '₹1.25L/mo', badge: 'Verified' },
+  { company: 'Amazon', role: 'SDE-1 Assessment', ctc: '₹34 LPA', badge: 'Verified' },
+  { company: 'Cognizant', role: 'GenC Next', ctc: '₹9.2 LPA', badge: 'Verified' },
+  { company: 'ServiceNow', role: 'Cloud Diagnostics', ctc: '₹28 LPA', badge: 'Verified' },
+  { company: 'Wipro', role: 'NLTH / Turbo', ctc: '₹8.5 LPA', badge: 'Verified' },
 ]
 
 export default function HeroEngine() {
-  const [selectedBadge, setSelectedBadge] = useState<string | null>(null)
-
   return (
-    <section className="hero" aria-labelledby="hero-heading">
+    <section className="hero" id="hero" aria-labelledby="hero-heading">
       {/* Background bright studio atmosphere */}
       <div className="hero__backdrop" aria-hidden="true">
-        <img
-          src="/assets/hero-orbit.jpg"
-          alt=""
-          className="hero__backdrop-img"
-          loading="eager"
-        />
-        <div className="hero__backdrop-overlay" />
+        <div className="hero__backdrop-gradient" />
         <div className="hero__grid-mesh" />
       </div>
 
@@ -60,31 +35,25 @@ export default function HeroEngine() {
           <div className="hero__eyebrow">
             <span className="tag tag--yellow hero__eyebrow-tag">
               <span className="hero__pulse-dot" />
-              <span>THE BRIGHT CAREER ENGINE · 2026 EDITION</span>
+              <span>THE CAREER ENGINE FOR ENGINEERS</span>
             </span>
           </div>
 
-          {/* Bold High-Energy Headline */}
+          {/* Bold High-Impact Headline */}
           <h1 id="hero-heading" className="hero__heading">
             <span className="hero__heading-row">
-              <span className="hero__word">Launch</span>{' '}
-              <span className="hero__word">Your</span>
+              <span className="hero__word">Master</span>{' '}
+              <span className="hero__word">Coding.</span>
             </span>
             <span className="hero__heading-row">
-              <span className="hero__heading-accent">Career Orbit</span>
-            </span>
-            <span className="hero__heading-row">
-              <span className="hero__word">At</span>{' '}
-              <span className="hero__word-dim">Super-Dream</span>{' '}
-              <span className="hero__word">Speed.</span>
+              <span className="hero__heading-accent">Crack Placements.</span>
             </span>
           </h1>
 
-          {/* Subtext */}
+          {/* Clean, Direct Subtext */}
           <p className="hero__sub">
-            The high-energy placement intelligence platform for ambitious engineers.
-            Solve 1,200+ company-specific DSA challenges, battle-test code in real time,
-            and accelerate your readiness curve before campus drives start.
+            Prepare with 12,500+ company-tagged questions from 500+ top recruiters.
+            Run code instantly in-browser, master topic tracks, and prepare for campus placement drives.
           </p>
 
           {/* CTAs */}
@@ -95,110 +64,60 @@ export default function HeroEngine() {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
             >
-              <span>Initialize Career Engine</span>
+              <span>Get Started Free</span>
               <svg width="18" height="18" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </motion.a>
 
-            <motion.a
-              href="#practice"
-              className="hero__btn-ghost"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <polygon points="5,3 13,8 5,13" />
-              </svg>
-              <span>Explore Question Lab</span>
-            </motion.a>
+            <a href="#practice" className="hero__btn-ghost">
+              <span>Explore Questions</span>
+              <span className="hero__btn-arrow" aria-hidden="true">↓</span>
+            </a>
           </div>
 
-          {/* Quick interactive company targets */}
-          <div className="hero__target-bar">
-            <span className="hero__target-label">Target Recruiter:</span>
-            <div className="hero__target-tags">
-              {HERO_COMPANIES.map(c => (
-                <button
-                  key={c.name}
-                  type="button"
-                  onClick={() => setSelectedBadge(prev => prev === c.name ? null : c.name)}
-                  className={`hero__target-chip ${selectedBadge === c.name ? 'active' : ''}`}
-                >
-                  <span className="hero__chip-dot" style={{ background: c.color }} />
-                  {c.name}
-                </button>
-              ))}
+          {/* Clean Metric Badges */}
+          <div className="hero__stats">
+            <div className="hero__stat">
+              <span className="hero__stat-value">12,500+</span>
+              <span className="hero__stat-label">Coding Questions</span>
             </div>
-          </div>
-
-          {/* Stats Bar */}
-          <div className="hero__stats" role="list">
-            {STATS.map(s => (
-              <div key={s.label} className="hero__stat" role="listitem">
-                <div className="hero__stat-value">{s.value}</div>
-                <div className="hero__stat-label">{s.label}</div>
-                <div className="hero__stat-sub">{s.sub}</div>
-              </div>
-            ))}
+            <div className="hero__stat">
+              <span className="hero__stat-value">500+</span>
+              <span className="hero__stat-label">Recruiters Tagged</span>
+            </div>
+            <div className="hero__stat">
+              <span className="hero__stat-value">150+</span>
+              <span className="hero__stat-label">Partner Colleges</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Right column — Bright 3D Studio Frame */}
-        <div className="hero__right">
-          <div className="hero__canvas-frame">
-            {/* Top white glass toolbar */}
-            <div className="hero__hud-header" aria-hidden="true">
-              <div className="hero__hud-lights">
-                <span className="hero__hud-light red" />
-                <span className="hero__hud-light yellow" />
-                <span className="hero__hud-light green" />
-              </div>
-              <div className="hero__hud-title">
-                DKODER // CAREER_ORBIT_ENGINE :: STUDIO_CORE
-              </div>
-              <div className="hero__hud-mode">LIVE 3D</div>
-            </div>
-
-            {/* 3D Canvas */}
-            <div className="hero__canvas-wrap">
-              <Suspense fallback={<div className="hero__canvas-fallback"><div className="hero__spinner" /></div>}>
-                <CareerOrbitCanvas />
-              </Suspense>
-            </div>
-
-            {/* Bottom HUD info bar */}
-            <div className="hero__hud-footer" aria-hidden="true">
-              <div className="hero__hud-metric">
-                <span className="lbl">NODES</span>
-                <span className="val">8 RECRUITERS</span>
-              </div>
-              <div className="hero__hud-metric">
-                <span className="lbl">TOPOLOGY</span>
-                <span className="val">ASYMMETRIC DUAL-RING</span>
-              </div>
-              <div className="hero__hud-metric">
-                <span className="lbl">INTERACTION</span>
-                <span className="val">HOVER / RAYCAST</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Right column — The Authentic DKODER Placement & Dialogue Studio */}
+        <motion.div
+          className="hero__right"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <HeroPlacementStudio />
+        </motion.div>
       </div>
 
-      {/* Live Verified Placements Ticker */}
-      <div className="hero__ticker" aria-label="Recent student verified offers">
+      {/* Recruiter hiring ticker */}
+      <div className="hero__ticker" aria-label="Verified recruitment drives">
         <div className="hero__ticker-badge">
-          <span className="hero__ticker-pulse" />
-          <span>VERIFIED OFFERS</span>
+          <span className="hero__pulse-dot" />
+          <span>VERIFIED DRIVES</span>
         </div>
         <div className="hero__ticker-track">
-          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-            <div key={i} className="hero__ticker-card">
+          {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
+            <div key={idx} className="hero__ticker-card">
               <span className="hero__ticker-company">{item.company}</span>
               <span className="hero__ticker-role">{item.role}</span>
               <span className="hero__ticker-ctc">{item.ctc}</span>
               <span className="hero__ticker-status">{item.badge}</span>
+              <span className="hero__ticker-sep">·</span>
             </div>
           ))}
         </div>

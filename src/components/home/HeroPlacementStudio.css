@@ -1,0 +1,232 @@
+/* ============================================================
+   DKODER Hero Showcase — Clean, Elegant, High-Impact
+   Directly conveys the website motto without clumsy clutter
+   ============================================================ */
+
+.hero-showcase {
+  background: #FFFFFF;
+  border: 1.5px solid rgba(23, 25, 28, 0.12);
+  border-radius: 22px;
+  box-shadow:
+    0 24px 60px -12px rgba(23, 25, 28, 0.09),
+    0 6px 20px rgba(23, 25, 28, 0.04);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-showcase:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 32px 70px -12px rgba(23, 25, 28, 0.12),
+    0 8px 24px rgba(23, 25, 28, 0.06);
+}
+
+/* ── Top Window Bar ────────────────────────────────────────── */
+.hero-showcase__window-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #FAF8F2;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.08);
+}
+
+.hero-showcase__traffic-lights {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.window-dot.red    { background: #FF5F56; }
+.window-dot.yellow { background: #FFBD2E; }
+.window-dot.green  { background: #27C93F; }
+
+.hero-showcase__window-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #383B40;
+}
+
+.window-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #27C93F;
+  box-shadow: 0 0 6px #27C93F;
+  animation: pulseBeacon 2s infinite ease-in-out;
+}
+
+.hero-showcase__status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  background: #EBFBEE;
+  color: #2B8A3E;
+  border: 1px solid #B2F2BB;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.shield-icon {
+  color: #2B8A3E;
+}
+
+/* ── Visual Stage ──────────────────────────────────────────── */
+.hero-showcase__stage {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: #FAF8F2;
+  overflow: hidden;
+}
+
+.hero-showcase__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-showcase:hover .hero-showcase__image {
+  transform: scale(1.025);
+}
+
+/* ── Floating Micro-Badges ─────────────────────────────────── */
+.hero-showcase__float-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(23, 25, 28, 0.1);
+  border-radius: 12px;
+  padding: 8px 14px;
+  box-shadow:
+    0 12px 28px rgba(23, 25, 28, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.04);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.badge-icon {
+  flex-shrink: 0;
+}
+
+.gold-icon   { color: #D97706; }
+.green-icon  { color: #2B8A3E; }
+.orange-icon { color: #E8590C; }
+
+.badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.badge-title {
+  font-family: var(--font-body, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #17191C;
+  line-height: 1.2;
+}
+
+.badge-sub {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #6C727D;
+  line-height: 1.2;
+}
+
+/* Specific Badge Placements */
+.badge-top-right {
+  top: 14px;
+  right: 14px;
+  border-color: rgba(245, 215, 56, 0.6);
+  background: rgba(255, 254, 240, 0.96);
+}
+
+.badge-bottom-left {
+  bottom: 14px;
+  left: 14px;
+  border-color: rgba(39, 201, 63, 0.3);
+}
+
+.badge-bottom-right {
+  bottom: 14px;
+  right: 14px;
+  border-color: rgba(232, 89, 12, 0.3);
+}
+
+/* ── Bottom Strip ──────────────────────────────────────────── */
+.hero-showcase__footer {
+  padding: 14px 20px;
+  background: #FAF8F2;
+  border-top: 1px solid rgba(23, 25, 28, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-tagline {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #4A4F57;
+  font-weight: 600;
+}
+
+/* ── Responsive adjustments ────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-showcase__stage {
+    height: 340px;
+  }
+  .hero-showcase__float-badge {
+    padding: 6px 10px;
+  }
+  .badge-title {
+    font-size: 0.72rem;
+  }
+  .badge-sub {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-showcase__stage {
+    height: 280px;
+  }
+  .badge-bottom-right {
+    display: none;
+  }
+  .badge-top-right {
+    top: 10px;
+    right: 10px;
+  }
+  .badge-bottom-left {
+    bottom: 10px;
+    left: 10px;
+  }
+}

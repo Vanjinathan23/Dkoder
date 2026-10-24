@@ -1,198 +1,298 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Check, Sparkles, ArrowRight, GraduationCap } from 'lucide-react'
 import './PricingSection.css'
 
-interface Plan {
+interface PricingTier {
   id: string
   name: string
-  monthlyPrice: number
-  annualPrice: number
-  tag: string
-  color: 'default' | 'lime' | 'violet' | 'orange'
-  popular?: boolean
+  basePrice: number
+  perDay: string
+  targetLpa: string
+  market: string
+  badge?: string
+  companies: string[]
   features: string[]
-  cta: string
-  href: string
 }
 
-const PLANS: Plan[] = [
+const TIERS: PricingTier[] = [
   {
     id: 'bronze',
-    name: 'Bronze Starter',
-    monthlyPrice: 699,
-    annualPrice: 499,
-    tag: 'FOUNDATIONAL',
-    color: 'default',
+    name: 'Bronze',
+    basePrice: 699,
+    perDay: '₹2 a day',
+    targetLpa: '0–3 LPA',
+    market: 'Service Based Recruiter Questions',
+    companies: ['TCS', 'Infosys', 'Wipro', 'Accenture', 'Cognizant', 'IBM', 'Hexaware'],
     features: [
-      'Access to 300+ Core Questions',
-      'Basic Code Runner Sandbox',
-      'Topic-wise Progress Analytics',
-      '2 Timed Mock Tests / month',
-      'Community Discussion Forum',
-    ],
-    cta: 'Initialize Bronze',
-    href: 'https://dkoder.co.in/register',
+      'Daily coding challenges & streaks',
+      'MCQ Aptitude Practice arena',
+      'Fundamental coding questions',
+      'Basic test reports',
+      'Community leaderboard'
+    ]
   },
   {
     id: 'silver',
-    name: 'Silver Pro',
-    monthlyPrice: 1299,
-    annualPrice: 949,
-    tag: 'MOST POPULAR',
-    color: 'lime',
-    popular: true,
+    name: 'Silver',
+    basePrice: 999,
+    perDay: '₹3 a day',
+    targetLpa: '0–5 LPA',
+    market: 'Service Based Recruiter Questions',
+    companies: ['TCS', 'Infosys', 'Hexaware', 'IBM', 'Microsoft', 'Amazon', 'Wipro'],
     features: [
-      'Access to 800+ Verified Questions',
-      'Full Company-Tagged Filters (FAANG +)',
-      'Multi-Language IDE (TS, Python, C++, Java)',
-      '10 Timed Placement Mocks / month',
-      'Synapse AI Approach & Big-O Feedback',
-      'Priority Doubt Resolution',
-    ],
-    cta: 'Unlock Silver Pro',
-    href: 'https://dkoder.co.in/register',
+      'Everything in Bronze',
+      'Product company beginner challenges',
+      'Speed drill practice mode',
+      'Detailed test analytics & accuracy radar',
+      'Bookmark & question history'
+    ]
   },
   {
     id: 'gold',
-    name: 'Gold Career',
-    monthlyPrice: 1999,
-    annualPrice: 1499,
-    tag: 'SUPER-DREAM ASPIRANTS',
-    color: 'violet',
+    name: 'Gold',
+    basePrice: 1599,
+    perDay: '₹5 a day',
+    targetLpa: '0–7 LPA',
+    market: 'Service & Product Interview Questions',
+    companies: ['Microsoft', 'Amazon', 'Adobe', 'TCS', 'Infosys', 'Intuit', 'Flipkart'],
     features: [
-      'Full 1,200+ Question Vault Access',
-      'Unlimited Full-Funnel Placement Mocks',
-      '4 Domain Career Track Roadmaps',
-      'Monthly Resume Review by Placed Alumni',
-      'Real-Time Proctored Coding Screens',
-      'Direct Mentor AMA Sessions',
-    ],
-    cta: 'Elevate to Gold',
-    href: 'https://dkoder.co.in/register',
+      'Everything in Silver',
+      'Advanced AI performance report card',
+      'Topic-wise & platform-wise filters enabled',
+      'Company mock assessment simulations',
+      'Placement readiness certificate'
+    ]
   },
   {
-    id: 'super-dream',
-    name: 'Super Dream All-In',
-    monthlyPrice: 2999,
-    annualPrice: 2249,
-    tag: 'OFFER GUARANTEE ACCELERATOR',
-    color: 'orange',
+    id: 'platinum',
+    name: 'Platinum',
+    basePrice: 1999,
+    perDay: '₹6 a day',
+    targetLpa: '0–15 LPA',
+    market: 'Service & Product Interview Questions',
+    badge: 'MOST POPULAR',
+    companies: ['Microsoft', 'Amazon', 'Adobe', 'Atlassian', 'Oracle', 'Salesforce', 'Stripe'],
     features: [
-      'Everything in Gold Career Tier',
-      '1-on-1 Personalized Mock Technicals',
-      'Recruiter Profile Dispatch Network',
-      'Interview Pass Guarantee Program',
-      'Lifetime Access to Future Curriculum',
-      '24/7 Dedicated Placement Concierge',
-    ],
-    cta: 'Join Super Dream',
-    href: 'https://dkoder.co.in/register',
+      'Everything in Gold',
+      'Company-wise recruitment filters',
+      'Package-wise question filtering',
+      'Full-length proctored placement tests',
+      'Priority code execution queue'
+    ]
   },
+  {
+    id: 'super_dream',
+    name: 'Super Dream Pack',
+    basePrice: 2999,
+    perDay: '₹9 a day',
+    targetLpa: '15+ LPA',
+    market: 'Top Tier Product Interview Questions',
+    badge: 'BEST VALUE',
+    companies: ['Google', 'Amazon', 'Microsoft', 'Adobe', 'Netflix', 'LinkedIn', 'Uber', 'Oracle'],
+    features: [
+      'Everything in Platinum',
+      'All Bundles & Tracks unlocked',
+      'Frequency-wise & Quarter-wise test filters',
+      'Early access to all exam series & mock alerts',
+      'Direct recruiter interview pattern archives'
+    ]
+  }
 ]
 
 export default function PricingSection() {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('annual')
+  const [durationYears, setDurationYears] = useState<number>(1)
 
   return (
     <section className="pricing" id="pricing" aria-labelledby="pricing-heading">
       <div className="container">
         {/* Header */}
         <div className="pricing__header">
-          <div className="tag tag--lime">INVESTMENT IN YOUR CAREER</div>
+          <div className="section-badge">
+            <span className="section-badge__dot" />
+            <span>Membership & Campus Licensing</span>
+          </div>
           <h2 id="pricing-heading" className="pricing__heading">
-            Transparent, High-ROI Plans
+            Pick Your Target Price. Zero Hidden Surprises.
           </h2>
           <p className="pricing__sub">
-            All plans include a 7-day risk-free guarantee. Start building your verified placement profile today.
+            Every plan covers one full year. Want it to last your entire engineering degree?
+            Select 1 to 4 years and the per-year price stays locked with zero mid-term price hikes.
           </p>
 
-          {/* Billing Switcher */}
-          <div className="pricing__toggle-wrap">
-            <button
-              type="button"
-              className={`pricing__toggle-btn ${billingCycle === 'monthly' ? 'active' : ''}`}
-              onClick={() => setBillingCycle('monthly')}
-            >
-              Monthly Billing
-            </button>
-            <button
-              type="button"
-              className={`pricing__toggle-btn ${billingCycle === 'annual' ? 'active' : ''}`}
-              onClick={() => setBillingCycle('annual')}
-            >
-              Annual Billing
-              <span className="save-badge">SAVE 25%</span>
-            </button>
+          {/* Duration Multiplier Controls */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: '#FFFFFF', padding: '0.4rem', borderRadius: '9999px', border: '1.5px solid #17191C', margin: '1.5rem auto 0' }}>
+            <span style={{ fontSize: '0.8125rem', fontWeight: 700, padding: '0 0.75rem', color: '#64748B' }}>
+              COVERAGE DURATION:
+            </span>
+            {[1, 2, 3, 4].map(years => (
+              <button
+                key={years}
+                type="button"
+                onClick={() => setDurationYears(years)}
+                style={{
+                  padding: '0.45rem 1rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: 700,
+                  borderRadius: '9999px',
+                  border: 'none',
+                  cursor: 'pointer',
+                  background: durationYears === years ? '#F5FF38' : 'transparent',
+                  color: '#17191C',
+                  boxShadow: durationYears === years ? '0 1px 3px rgba(0,0,0,0.1)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                {years} {years === 1 ? 'Year' : 'Years'}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="pricing__grid">
-          {PLANS.map(plan => {
-            const price = billingCycle === 'annual' ? plan.annualPrice : plan.monthlyPrice
+        {/* 5-Tier Pricing Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+          {TIERS.map(tier => {
+            const totalPrice = tier.basePrice * durationYears
+            const isFeatured = tier.id === 'platinum' || tier.id === 'super_dream'
             return (
               <div
-                key={plan.id}
-                className={`pricing__card pricing__card--${plan.color} ${plan.popular ? 'popular' : ''}`}
+                key={tier.id}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '1.25rem',
+                  padding: '1.75rem',
+                  border: isFeatured ? '2px solid #17191C' : '1px solid #E2E8F0',
+                  boxShadow: isFeatured ? '6px 6px 0px #17191C' : '0 4px 12px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative'
+                }}
               >
-                {plan.popular && (
-                  <div className="pricing__popular-ribbon">
-                    <span>★ RECOMMENDED BY ALUMNI</span>
-                  </div>
+                {tier.badge && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '-12px',
+                      right: '16px',
+                      background: tier.id === 'super_dream' ? '#F5FF38' : '#8875FF',
+                      color: tier.id === 'super_dream' ? '#17191C' : '#FFFFFF',
+                      fontSize: '0.6875rem',
+                      fontWeight: 800,
+                      padding: '0.2rem 0.6rem',
+                      borderRadius: '9999px',
+                      border: '1px solid #17191C',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    {tier.badge}
+                  </span>
                 )}
 
-                <div className="pricing__card-top">
-                  <span className="pricing__tag">{plan.tag}</span>
-                  <h3 className="pricing__name">{plan.name}</h3>
-                  <div className="pricing__price-row">
-                    <span className="pricing__currency">₹</span>
-                    <span className="pricing__amount">{price.toLocaleString()}</span>
-                    <span className="pricing__period">/month</span>
+                <div>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, margin: '0 0 0.5rem', color: '#17191C' }}>
+                    {tier.name}
+                  </h3>
+
+                  {/* Target Box */}
+                  <div style={{ background: '#FAF8F5', padding: '0.6rem 0.85rem', borderRadius: '0.625rem', marginBottom: '1.25rem', border: '1px solid #E2E8F0' }}>
+                    <div style={{ fontSize: '1rem', fontWeight: 800, color: '#17191C' }}>{tier.targetLpa}</div>
+                    <div style={{ fontSize: '0.75rem', color: '#64748B' }}>{tier.market}</div>
                   </div>
-                  <span className="pricing__billing-note">
-                    {billingCycle === 'annual' ? 'Billed annually (₹' + (price * 12).toLocaleString() + '/yr)' : 'Billed monthly, cancel anytime'}
-                  </span>
+
+                  {/* Price Row */}
+                  <div style={{ marginBottom: '1.25rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.35rem' }}>
+                      <span style={{ fontSize: '2rem', fontWeight: 900, color: '#17191C', letterSpacing: '-0.03em' }}>
+                        ₹{totalPrice.toLocaleString()}
+                      </span>
+                      <span style={{ fontSize: '0.8125rem', color: '#64748B', fontWeight: 600 }}>
+                        / {durationYears === 1 ? 'year' : `${durationYears} yrs`}
+                      </span>
+                    </div>
+                    <span style={{ fontSize: '0.75rem', color: '#8875FF', fontWeight: 700 }}>
+                      {tier.perDay}
+                    </span>
+                  </div>
+
+                  {/* Features */}
+                  <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                    {tier.features.map((feat, idx) => (
+                      <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', fontSize: '0.8125rem', color: '#475569', lineHeight: 1.4 }}>
+                        <Check size={14} style={{ color: '#17191C', flexShrink: 0, marginTop: '2px' }} />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="pricing__divider" />
-
-                <ul className="pricing__feature-list" aria-label={`${plan.name} features`}>
-                  {plan.features.map(f => (
-                    <li key={f} className="pricing__feature-item">
-                      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" className="check-icon">
-                        <path d="M3 8.5l3.5 3.5L13 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <a href={plan.href} className={`pricing__btn pricing__btn--${plan.color}`}>
-                  <span>{plan.cta}</span>
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
-                  </svg>
-                </a>
+                {/* CTAs */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <Link
+                    to={`/auth/signup?plan=${tier.id}&duration=${durationYears}`}
+                    className="pricing__cta"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                      padding: '0.75rem',
+                      fontSize: '0.875rem',
+                      fontWeight: 800,
+                      background: isFeatured ? '#F5FF38' : '#17191C',
+                      color: isFeatured ? '#17191C' : '#FFFFFF',
+                      border: '1.5px solid #17191C',
+                      borderRadius: '0.625rem',
+                      textDecoration: 'none',
+                      transition: 'transform 0.15s ease'
+                    }}
+                  >
+                    <span>Purchase Plan</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                  <Link
+                    to="/partner-mou"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '0.35rem',
+                      padding: '0.5rem',
+                      fontSize: '0.75rem',
+                      fontWeight: 700,
+                      color: '#64748B',
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <GraduationCap size={13} />
+                    <span>Get Scholarship via College MOU</span>
+                  </Link>
+                </div>
               </div>
             )
           })}
         </div>
 
-        {/* Institutional / College LMS Callout */}
-        <div className="pricing__institutional-card">
-          <div className="inst-left">
-            <span className="tag tag--violet">FOR UNIVERSITIES & COLLEGES</span>
-            <h4 className="inst-title">Are you a Training & Placement Officer (TPO)?</h4>
-            <p className="inst-desc">
-              Deploy DKoder campus-wide. Track entire batch performance, conduct proctored internal coding tests,
-              benchmark branch readiness scores, and streamline recruiter drives with enterprise reporting.
-            </p>
-          </div>
-          <div className="inst-right">
-            <a href="https://dkoder.co.in" className="inst-btn">
-              <span>Request College LMS Demo</span>
-              <span>➔</span>
-            </a>
-          </div>
+        {/* Footer comparison link */}
+        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+          <Link
+            to="/pricing"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              fontWeight: 800,
+              fontSize: '0.9375rem',
+              color: '#17191C',
+              textDecoration: 'none',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '9999px',
+              background: '#FAF8F5',
+              border: '1.5px solid #17191C'
+            }}
+          >
+            <span>See the full feature-by-feature matrix & comparison table ↗</span>
+          </Link>
         </div>
       </div>
     </section>

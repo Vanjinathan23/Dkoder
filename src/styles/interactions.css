@@ -1,0 +1,204 @@
+/* ============================================================
+   DKoder Master Interactions, Hover Physics & Focus Design System
+   Aesthetic: Warm, Calm, Premium, Welcoming, Sophisticated
+   ============================================================ */
+
+/* ── 1. Top Restrained Scroll Progress Bar ─────────────────── */
+.scroll-progress-line {
+  position: fixed;
+  top: 72px; /* Sits directly flush underneath the 72px navbar */
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #F5FF38 0%, #FCC419 50%, #8875FF 100%);
+  z-index: 998;
+  pointer-events: none;
+  transform-origin: left center;
+  transition: transform 0.08s linear;
+  box-shadow: 0 0 10px rgba(245, 255, 56, 0.5);
+}
+
+.navbar--scrolled ~ .scroll-progress-line {
+  top: 64px;
+}
+
+/* ── 2. Button Micro-Interactions ──────────────────────────── */
+button,
+.btn,
+.hero__btn-primary,
+.hero__btn-ghost,
+.navbar__btn-signin,
+.navbar__btn-dashboard,
+.queries-tab-btn,
+.queries-action-card,
+.constellation__filter-btn,
+.lab__filter-pill,
+.lab__run-btn,
+.pricing__cta-btn,
+.tracks__tab-btn,
+.colleges__tab-btn,
+.colleges__mou-cta,
+.leaderboard__tab-btn {
+  position: relative;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease;
+  will-change: transform;
+}
+
+/* Primary Button Hover: 1.5px subtle lift + warm glow */
+.hero__btn-primary:hover,
+.navbar__btn-dashboard:hover,
+.pricing__cta-btn:hover,
+.colleges__mou-cta:hover,
+button.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -2px rgba(245, 255, 56, 0.45), 0 2px 6px rgba(23, 25, 28, 0.1);
+}
+
+.hero__btn-primary:active,
+.navbar__btn-dashboard:active,
+.pricing__cta-btn:active,
+.colleges__mou-cta:active,
+button.btn-primary:active {
+  transform: translateY(0px) scale(0.985);
+  box-shadow: 0 2px 8px rgba(23, 25, 28, 0.08);
+}
+
+/* Ghost / Secondary Button Hover */
+.hero__btn-ghost:hover,
+.navbar__btn-signin:hover,
+button.btn-secondary:hover {
+  transform: translateY(-1.5px);
+  background: rgba(23, 25, 28, 0.04);
+  border-color: rgba(23, 25, 28, 0.25);
+  color: #17191C;
+}
+
+.hero__btn-ghost:active,
+.navbar__btn-signin:active {
+  transform: translateY(0px) scale(0.985);
+}
+
+/* ── 3. Navigation Micro-Interactions ──────────────────────── */
+.navbar__link,
+.navbar__dropdown-trigger {
+  position: relative;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar__link:hover,
+.navbar__dropdown-trigger:hover {
+  color: #17191C;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .navbar__link:hover,
+[data-theme="dark"] .navbar__dropdown-trigger:hover {
+  color: #FFFFFF;
+}
+
+.navbar__dropdown-item {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.18s ease;
+}
+
+.navbar__dropdown-item:hover {
+  transform: translateX(3px);
+  background: rgba(245, 255, 56, 0.12) !important;
+}
+
+[data-theme="dark"] .navbar__dropdown-item:hover {
+  background: rgba(245, 255, 56, 0.08) !important;
+}
+
+/* ── 4. Card Micro-Interactions ────────────────────────────── */
+.query-card,
+.worry-card,
+.pricing__card,
+.pricing-tier-card,
+.tracks__tier-card,
+.course-card,
+.event-card,
+.resource-card,
+.challenge-card,
+.leaderboard__card,
+.dossier__card {
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s ease;
+  will-change: transform;
+}
+
+.query-card:hover,
+.worry-card:hover,
+.course-card:hover,
+.event-card:hover,
+.resource-card:hover,
+.challenge-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -4px rgba(23, 25, 28, 0.08), 0 0 0 1px rgba(245, 255, 56, 0.4);
+}
+
+.pricing__card:hover,
+.pricing-tier-card:hover,
+.tracks__tier-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -6px rgba(23, 25, 28, 0.12), 0 0 0 1.5px rgba(245, 255, 56, 0.6);
+}
+
+/* ── 5. Form & Control States ──────────────────────────────── */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+select,
+textarea {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #17191C !important;
+  box-shadow: 0 0 0 3px rgba(245, 255, 56, 0.45) !important;
+}
+
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  border-color: #F5FF38 !important;
+  box-shadow: 0 0 0 3px rgba(245, 255, 56, 0.25) !important;
+}
+
+/* ── 6. Keyboard Focus Visibility (A11y) ───────────────────── */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #17191C !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+[data-theme="dark"] a:focus-visible,
+[data-theme="dark"] button:focus-visible,
+[data-theme="dark"] [tabindex]:focus-visible {
+  outline: 2px solid #F5FF38 !important;
+}
+
+/* ── 8. Reduced Motion Respect ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .scroll-progress-line {
+    display: none !important;
+  }
+}

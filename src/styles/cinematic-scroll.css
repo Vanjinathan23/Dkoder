@@ -1,0 +1,116 @@
+/* ============================================================
+   DKODER Platform Styling & Section Depth Orchestration
+   Warm, pleasant, professional developer aesthetic
+   ============================================================ */
+
+/* Main content wrapper */
+.cinematic-page-content {
+  position: relative;
+  z-index: 1;
+  background-color: #FFFDF7;
+}
+
+/* Pleasant, Crisp Section Backdrops */
+.hero {
+  background: linear-gradient(180deg, #FFFDF7 0%, #FAF8F2 50%, #FFFFFF 100%) !important;
+}
+
+.hero__backdrop-gradient {
+  background:
+    radial-gradient(circle at 82% 28%, rgba(245, 255, 56, 0.16) 0%, transparent 55%),
+    radial-gradient(circle at 14% 65%, rgba(136, 117, 255, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #FFFDF7 0%, #FAF8F2 65%, #FFFFFF 100%) !important;
+}
+
+.queries-section {
+  background: #FFFDF7 !important;
+  border-top: 1px solid rgba(23, 25, 28, 0.06);
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.constellation {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.guidance {
+  background: #FFFDF7 !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.lab {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.tracks {
+  background: #FFFDF7 !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.colleges {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.pricing {
+  background: #FFFDF7 !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.leaderboard {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.security-section {
+  background: #FFFDF7 !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.faq-section {
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(23, 25, 28, 0.06);
+}
+
+.cta-section {
+  background: #FFFDF7 !important;
+}
+
+/* Enhanced 3D Spatial Card Hover Effects */
+.query-card,
+.worry-card,
+.pricing__card,
+.tracks__tier-card,
+.leaderboard__card {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 30px rgba(23, 25, 28, 0.06), 0 1px 3px rgba(23, 25, 28, 0.04);
+}
+
+.query-card:hover,
+.worry-card:hover,
+.pricing__card:hover,
+.tracks__tier-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(23, 25, 28, 0.12), 0 2px 8px rgba(245, 255, 56, 0.2);
+}
+
+/* Dark mode theme overrides */
+[data-theme="dark"] .queries-section,
+[data-theme="dark"] .guidance,
+[data-theme="dark"] .tracks,
+[data-theme="dark"] .pricing,
+[data-theme="dark"] .security-section,
+[data-theme="dark"] .cta-section {
+  background: rgba(21, 24, 31, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .constellation,
+[data-theme="dark"] .lab,
+[data-theme="dark"] .colleges,
+[data-theme="dark"] .leaderboard,
+[data-theme="dark"] .faq-section {
+  background: rgba(17, 18, 22, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+}

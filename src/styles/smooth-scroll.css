@@ -1,0 +1,118 @@
+/* ============================================================
+   DKODER Premium Smooth Scrolling & Momentum Physics (Lenis + GSAP)
+   ============================================================ */
+
+/* Lenis Recommended Root Setup */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Precision Top Scroll Progress Bar */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #F5FF38 0%, #8875FF 50%, #22C55E 100%);
+  transform-origin: 0% 50%;
+  transform: scaleX(0);
+  z-index: 10000;
+  box-shadow: 0 0 12px rgba(245, 255, 56, 0.6), 0 0 4px rgba(136, 117, 255, 0.4);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+/* Modern Floating Back to Top Pill (Positioned in Bottom Left for Complete Visibility) */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 28px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(23, 25, 28, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(245, 255, 56, 0.4);
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(23, 25, 28, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) scale(0.95);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-to-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-to-top-btn:hover {
+  background: #17191C;
+  border-color: #F5FF38;
+  color: #F5FF38;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 36px rgba(23, 25, 28, 0.35), 0 0 16px rgba(245, 255, 56, 0.3);
+}
+
+.scroll-to-top-btn svg {
+  transition: transform 0.25s ease;
+}
+
+.scroll-to-top-btn:hover svg {
+  transform: translateY(-3px);
+}
+
+/* Scroll-triggered reveal classes */
+[data-scroll-reveal] {
+  opacity: 0;
+  transform: translateY(32px);
+  will-change: transform, opacity;
+}
+
+[data-scroll-reveal="stagger"] > * {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress-bar,
+  .scroll-to-top-btn {
+    transition: none !important;
+  }
+  [data-scroll-reveal],
+  [data-scroll-reveal="stagger"] > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

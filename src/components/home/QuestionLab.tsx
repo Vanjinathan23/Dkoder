@@ -1,530 +1,361 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Sparkles,
+  ArrowRight,
+  Lock,
+  CheckCircle2,
+  XCircle,
+  Layers,
+  Code2,
+  FileText,
+  SlidersHorizontal,
+  RotateCcw
+} from 'lucide-react'
 import './QuestionLab.css'
 
-interface CodeSnippets {
-  typescript: string
-  python: string
-  cpp: string
-  java: string
+interface TargetPreset {
+  id: string
+  company: string
+  logoInitial: string
+  color: string
+  packageRange: string
+  irrelevantCut: string
+  sampleQuestions: {
+    title: string
+    type: 'Coding' | 'MCQ' | 'Platform'
+    difficulty: 'Easy' | 'Medium' | 'Hard'
+    insight: string
+  }[]
 }
 
-interface Question {
-  id: number
-  title: string
-  companies: string[]
-  difficulty: 'Easy' | 'Medium' | 'Hard'
-  topic: string
-  acceptance: string
-  timeComplexity: string
-  spaceComplexity: string
-  description: string
-  example: string
-  constraints: string[]
-  snippets: CodeSnippets
-  testCases: { input: string; expected: string }[]
-}
-
-const QUESTIONS: Question[] = [
+const TARGET_PRESETS: TargetPreset[] = [
   {
-    id: 1,
-    title: 'Two Sum (Optimal Dual Pointer & Map)',
-    companies: ['Google', 'Amazon', 'Meta'],
-    difficulty: 'Easy',
-    topic: 'Hash Tables & Arrays',
-    acceptance: '84.2%',
-    timeComplexity: 'O(N)',
-    spaceComplexity: 'O(N)',
-    description: 'Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target. You may assume each input has exactly one valid solution.',
-    example: 'Input: nums = [2, 7, 11, 15], target = 9\nOutput: [0, 1] (nums[0] + nums[1] == 9)',
-    constraints: ['2 <= nums.length <= 10^5', '-10^9 <= nums[i] <= 10^9', 'Exactly one valid answer exists'],
-    snippets: {
-      typescript: `function twoSum(nums: number[], target: number): number[] {
-  const map = new Map<number, number>();
-  for (let i = 0; i < nums.length; i++) {
-    const complement = target - nums[i];
-    if (map.has(complement)) {
-      return [map.get(complement)!, i];
-    }
-    map.set(nums[i], i);
-  }
-  return [];
-}`,
-      python: `def two_sum(nums: list[int], target: int) -> list[int]:
-    lookup = {}
-    for i, num in enumerate(nums):
-        complement = target - num
-        if complement in lookup:
-            return [lookup[complement], i]
-        lookup[num] = i
-    return []`,
-      cpp: `vector<int> twoSum(vector<int>& nums, int target) {
-    unordered_map<int, int> lookup;
-    for (int i = 0; i < nums.size(); ++i) {
-        int comp = target - nums[i];
-        if (lookup.count(comp)) return {lookup[comp], i};
-        lookup[nums[i]] = i;
-    }
-    return {};
-}`,
-      java: `public int[] twoSum(int[] nums, int target) {
-    Map<Integer, Integer> map = new HashMap<>();
-    for (int i = 0; i < nums.length; i++) {
-        int comp = target - nums[i];
-        if (map.containsKey(comp)) return new int[] { map.get(comp), i };
-        map.put(nums[i], i);
-    }
-    return new int[]{};
-}`
-    },
-    testCases: [
-      { input: 'nums = [2,7,11,15], target = 9', expected: '[0, 1]' },
-      { input: 'nums = [3,2,4], target = 6', expected: '[1, 2]' },
-      { input: 'nums = [3,3], target = 6', expected: '[0, 1]' },
-    ]
-  },
-  {
-    id: 2,
-    title: 'Longest Common Subsequence (2D DP)',
-    companies: ['Microsoft', 'Flipkart', 'Amazon'],
-    difficulty: 'Medium',
-    topic: 'Dynamic Programming',
-    acceptance: '62.8%',
-    timeComplexity: 'O(M × N)',
-    spaceComplexity: 'O(M × N)',
-    description: 'Given two strings text1 and text2, return the length of their longest common subsequence. If there is no common subsequence, return 0.',
-    example: 'Input: text1 = "abcde", text2 = "ace"\nOutput: 3 (The LCS is "ace")',
-    constraints: ['1 <= text1.length, text2.length <= 1000', 'Strings contain only lowercase English characters'],
-    snippets: {
-      typescript: `function longestCommonSubsequence(text1: string, text2: string): number {
-  const m = text1.length, n = text2.length;
-  const dp: number[][] = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
-
-  for (let i = 1; i <= m; i++) {
-    for (let j = 1; j <= n; j++) {
-      if (text1[i - 1] === text2[j - 1]) {
-        dp[i][j] = dp[i - 1][j - 1] + 1;
-      } else {
-        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+    id: 'tcs',
+    company: 'TCS (NQT & Prime)',
+    logoInitial: 'TCS',
+    color: '#0052CC',
+    packageRange: '₹3.6 – ₹11.5 LPA',
+    irrelevantCut: '12,240',
+    sampleQuestions: [
+      {
+        title: 'Array Rotation & Subarray Optimization',
+        type: 'Coding',
+        difficulty: 'Easy',
+        insight: 'Mandatory in 88% of TCS NQT Qualifier rounds'
+      },
+      {
+        title: 'Automata Fix & Pseudocode Tracing',
+        type: 'MCQ',
+        difficulty: 'Medium',
+        insight: 'Tested heavily in TCS Prime Foundation round'
+      },
+      {
+        title: 'Dynamic Pathfinding with Obstacles',
+        type: 'Coding',
+        difficulty: 'Hard',
+        insight: 'Key differential coding problem for ₹9–11.5L roles'
       }
-    }
-  }
-  return dp[m][n];
-}`,
-      python: `def longest_common_subsequence(text1: str, text2: str) -> int:
-    m, n = len(text1), len(text2)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if text1[i - 1] == text2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
-    return dp[m][n]`,
-      cpp: `int longestCommonSubsequence(string t1, string t2) {
-    int m = t1.size(), n = t2.size();
-    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-    for (int i = 1; i <= m; ++i) {
-        for (int j = 1; j <= n; ++j) {
-            dp[i][j] = (t1[i - 1] == t2[j - 1]) ? dp[i - 1][j - 1] + 1 : max(dp[i - 1][j], dp[i][j - 1]);
-        }
-    }
-    return dp[m][n];
-}`,
-      java: `public int longestCommonSubsequence(String text1, String text2) {
-    int m = text1.length(), n = text2.length();
-    int[][] dp = new int[m + 1][n + 1];
-    for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
-            dp[i][j] = (text1.charAt(i - 1) == text2.charAt(j - 1)) ? dp[i - 1][j - 1] + 1 : Math.max(dp[i - 1][j], dp[i][j - 1]);
-        }
-    }
-    return dp[m][n];
-}`
-    },
-    testCases: [
-      { input: 'text1 = "abcde", text2 = "ace"', expected: '3' },
-      { input: 'text1 = "abc", text2 = "abc"', expected: '3' },
-      { input: 'text1 = "abc", text2 = "def"', expected: '0' },
     ]
   },
   {
-    id: 3,
-    title: 'LRU Cache Design (Doubly Linked + Map)',
-    companies: ['Google', 'Meta', 'Uber'],
-    difficulty: 'Hard',
-    topic: 'System Design & Data Structures',
-    acceptance: '48.9%',
-    timeComplexity: 'O(1) Get / Put',
-    spaceComplexity: 'O(Capacity)',
-    description: 'Design a data structure that follows the constraints of a Least Recently Used (LRU) cache with O(1) amortized get and put operations.',
-    example: 'LRUCache(2) -> put(1,1), put(2,2), get(1)->1, put(3,3) evicts key 2, get(2)->-1',
-    constraints: ['1 <= capacity <= 3000', '0 <= key <= 10^4', 'At most 2 * 10^5 calls will be made to get and put'],
-    snippets: {
-      typescript: `class LRUCache {
-  private capacity: number;
-  private map = new Map<number, number>();
-
-  constructor(capacity: number) {
-    this.capacity = capacity;
-  }
-
-  get(key: number): number {
-    if (!this.map.has(key)) return -1;
-    const val = this.map.get(key)!;
-    this.map.delete(key);
-    this.map.set(key, val);
-    return val;
-  }
-
-  put(key: number, value: number): void {
-    if (this.map.has(key)) this.map.delete(key);
-    else if (this.map.size === this.capacity) {
-      this.map.delete(this.map.keys().next().value!);
-    }
-    this.map.set(key, value);
-  }
-}`,
-      python: `from collections import OrderedDict
-
-class LRUCache:
-    def __init__(self, capacity: int):
-        self.cap = capacity
-        self.cache = OrderedDict()
-
-    def get(self, key: int) -> int:
-        if key not in self.cache:
-            return -1
-        self.cache.move_to_end(key)
-        return self.cache[key]
-
-    def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.cache.move_to_end(key)
-        self.cache[key] = value
-        if len(self.cache) > self.cap:
-            self.cache.popitem(last=False)`,
-      cpp: `class LRUCache {
-    int cap;
-    list<pair<int, int>> lru;
-    unordered_map<int, list<pair<int, int>>::iterator> mp;
-public:
-    LRUCache(int capacity) : cap(capacity) {}
-    int get(int key) {
-        if (!mp.count(key)) return -1;
-        lru.splice(lru.begin(), lru, mp[key]);
-        return mp[key]->second;
-    }
-    void put(int key, int val) {
-        if (mp.count(key)) {
-            lru.splice(lru.begin(), lru, mp[key]);
-            mp[key]->second = val;
-            return;
-        }
-        if (lru.size() == cap) {
-            mp.erase(lru.back().first);
-            lru.pop_back();
-        }
-        lru.emplace_front(key, val);
-        mp[key] = lru.begin();
-    }
-};`,
-      java: `class LRUCache {
-    private final int capacity;
-    private final LinkedHashMap<Integer, Integer> map;
-    public LRUCache(int capacity) {
-        this.capacity = capacity;
-        this.map = new LinkedHashMap<>(capacity, 0.75f, true) {
-            protected boolean removeEldestEntry(Map.Entry eldest) {
-                return size() > capacity;
-            }
-        };
-    }
-    public int get(int key) { return map.getOrDefault(key, -1); }
-    public void put(int key, int value) { map.put(key, value); }
-}`
-    },
-    testCases: [
-      { input: 'LRUCache(2), put(1,1), put(2,2), get(1)', expected: '1' },
-      { input: 'put(3,3), get(2)', expected: '-1 (evicted)' },
-      { input: 'put(4,4), get(1)', expected: '-1 (evicted)' },
+    id: 'zoho',
+    company: 'Zoho Corporation',
+    logoInitial: 'ZOHO',
+    color: '#E02020',
+    packageRange: '₹8.5 – ₹12.0 LPA',
+    irrelevantCut: '12,380',
+    sampleQuestions: [
+      {
+        title: 'Matrix Spiral Traversal without Built-in Helpers',
+        type: 'Coding',
+        difficulty: 'Medium',
+        insight: 'Zoho Round 2 signature problem pattern'
+      },
+      {
+        title: 'Stack-based Parenthesis & HTML Tag Validation',
+        type: 'Platform',
+        difficulty: 'Easy',
+        insight: 'Standard Round 1 screening challenge'
+      },
+      {
+        title: 'Custom String Formatter & Word Break Automaton',
+        type: 'Coding',
+        difficulty: 'Hard',
+        insight: 'Zoho Advanced Round 3 deep technical test'
+      }
+    ]
+  },
+  {
+    id: 'microsoft',
+    company: 'Microsoft IDC',
+    logoInitial: 'MSFT',
+    color: '#00A4EF',
+    packageRange: '₹14 – ₹24 LPA',
+    irrelevantCut: '12,390',
+    sampleQuestions: [
+      {
+        title: 'Type Casting Truncation & Pointer Arithmetic',
+        type: 'MCQ',
+        difficulty: 'Easy',
+        insight: 'Campus technical assessment core diagnostic'
+      },
+      {
+        title: 'Subarray Sum Equals K (Prefix Sum Optimization)',
+        type: 'Coding',
+        difficulty: 'Medium',
+        insight: 'High-frequency Microsoft On-site interview problem'
+      },
+      {
+        title: 'Serialize & Deserialize Binary Trees with Constraints',
+        type: 'Coding',
+        difficulty: 'Hard',
+        insight: 'SWE Fresher Final Technical round favorite'
+      }
+    ]
+  },
+  {
+    id: 'amazon',
+    company: 'Amazon AWS',
+    logoInitial: 'AMZN',
+    color: '#FF9900',
+    packageRange: '₹28 – ₹36 LPA',
+    irrelevantCut: '12,385',
+    sampleQuestions: [
+      {
+        title: 'LRU Cache Eviction with Double-Linked Hash Index',
+        type: 'Coding',
+        difficulty: 'Hard',
+        insight: 'Featured in 76% of Amazon SDE-1 Online Assessments'
+      },
+      {
+        title: 'Rotated Sorted Array Search with Boundary Cases',
+        type: 'Coding',
+        difficulty: 'Medium',
+        insight: 'High-priority core data structure diagnostic'
+      },
+      {
+        title: 'Sliding Window Maximum & Frequency Bucket',
+        type: 'Coding',
+        difficulty: 'Medium',
+        insight: 'Standard Amazon Round 1 technical problem'
+      }
+    ]
+  },
+  {
+    id: 'infosys',
+    company: 'Infosys (SP & DSE)',
+    logoInitial: 'INFY',
+    color: '#0070AD',
+    packageRange: '₹3.6 – ₹9.5 LPA',
+    irrelevantCut: '12,320',
+    sampleQuestions: [
+      {
+        title: 'Specialist Programmer Dynamic Programming Subset',
+        type: 'Coding',
+        difficulty: 'Hard',
+        insight: 'Tested in InfyTQ & HackWithInfy grand rounds'
+      },
+      {
+        title: 'Greedy Coin Formulation & Array Compaction',
+        type: 'Coding',
+        difficulty: 'Medium',
+        insight: 'Core problem for DSE (₹6.5 LPA) tier selection'
+      },
+      {
+        title: 'Thread Safety & Concurrency Primitives',
+        type: 'MCQ',
+        difficulty: 'Medium',
+        insight: 'Technical multiple-choice screening benchmark'
+      }
     ]
   }
 ]
 
 export default function QuestionLab() {
-  const [activeQuestion, setActiveQuestion] = useState<Question>(QUESTIONS[0])
-  const [selectedLang, setSelectedLang] = useState<'typescript' | 'python' | 'cpp' | 'java'>('typescript')
-  const [activeTab, setActiveTab] = useState<'editor' | 'problem' | 'telemetry'>('editor')
-  const [executionState, setExecutionState] = useState<'idle' | 'running' | 'done'>('idle')
-  const [activeTestIndex, setActiveTestIndex] = useState(0)
+  const [selectedTargetId, setSelectedTargetId] = useState('tcs')
 
-  const handleRunCode = () => {
-    setExecutionState('running')
-    setTimeout(() => {
-      setExecutionState('done')
-    }, 1100)
-  }
-
-  const codeLines = activeQuestion.snippets[selectedLang].split('\n')
+  const activeTarget = TARGET_PRESETS.find(t => t.id === selectedTargetId) || TARGET_PRESETS[0]
 
   return (
-    <section className="qlab" id="practice" aria-labelledby="qlab-heading">
+    <section className="ql-clean-section" id="practice" aria-labelledby="ql-heading">
       <div className="container">
-        {/* Section Header */}
-        <div className="qlab__header">
-          <div className="tag tag--lime">INTERACTIVE CODE STUDIO</div>
-          <h2 id="qlab-heading" className="qlab__heading">
-            Zero-Friction Interview Simulator
+
+        {/* Simple, Human Header */}
+        <div className="ql-clean-head">
+          <div className="section-badge">
+            <span className="section-badge__dot" />
+            <span>Targeted Practice</span>
+          </div>
+
+          <h2 id="ql-heading" className="ql-clean-title">
+            A deep question bank.<br />
+            <span className="ql-clean-title-accent">Only the few you actually need.</span>
           </h2>
-          <p className="qlab__sub">
-            Switch languages, inspect Big-O complexity profiles, and trigger real-time
-            test suite execution against actual FAANG problem constraints.
+
+          <p className="ql-clean-lead">
+            Other platforms dump 2,000 generic problems on you.
+            On DKODER, you pick where you want to work—and we cut away the 98% of questions you'll never be asked.
           </p>
         </div>
 
-        {/* IDE Layout Container */}
-        <div className="qlab__studio">
-          {/* Left: Problem Selector & Topic Navigator */}
-          <div className="qlab__sidebar">
-            <div className="qlab__sidebar-header">
-              <span className="lbl">QUESTION VAULT</span>
-              <span className="count">1,200+ ACTIVE</span>
-            </div>
+        {/* Interactive Experience Showcase */}
+        <div className="ql-showcase-card">
 
-            <div className="qlab__question-list" role="listbox">
-              {QUESTIONS.map(q => {
-                const isSelected = q.id === activeQuestion.id
+          {/* Step 1: Target Recruiter Selector */}
+          <div className="ql-picker-row">
+            <span className="ql-picker-label">
+              <Sparkles size={16} className="ql-picker-icon" />
+              <span>Step 1: Pick your dream target:</span>
+            </span>
+
+            <div className="ql-company-pill-group" role="tablist">
+              {TARGET_PRESETS.map(preset => {
+                const isActive = preset.id === selectedTargetId
                 return (
                   <button
-                    key={q.id}
+                    key={preset.id}
                     type="button"
-                    className={`qlab__q-item ${isSelected ? 'active' : ''}`}
-                    onClick={() => {
-                      setActiveQuestion(q)
-                      setExecutionState('idle')
-                    }}
+                    role="tab"
+                    aria-selected={isActive}
+                    className={`ql-company-pill ${isActive ? 'is-active' : ''}`}
+                    onClick={() => setSelectedTargetId(preset.id)}
                   >
-                    <div className="qlab__q-top">
-                      <span className="qlab__q-title">{q.title}</span>
-                      <span className={`qlab__diff-badge ${q.difficulty.toLowerCase()}`}>
-                        {q.difficulty}
-                      </span>
-                    </div>
-
-                    <div className="qlab__q-meta">
-                      <span className="qlab__q-topic">{q.topic}</span>
-                      <span className="qlab__q-accept">{q.acceptance} pass</span>
-                    </div>
-
-                    <div className="qlab__q-companies">
-                      {q.companies.map(c => (
-                        <span key={c} className="qlab__company-pill">{c}</span>
-                      ))}
-                    </div>
+                    <span className="pill-initial" style={{ color: isActive ? '#17191C' : preset.color }}>
+                      {preset.logoInitial}
+                    </span>
+                    <span className="pill-name">{preset.company}</span>
                   </button>
                 )
               })}
             </div>
-
-            <div className="qlab__sidebar-footer">
-              <a href="https://dkoder.co.in/practice" className="qlab__view-all-link">
-                <span>Access Complete Company Library (1,200+ Qs)</span>
-                <span>➔</span>
-              </a>
-            </div>
           </div>
 
-          {/* Right: Full Interactive Developer Studio Workspace */}
-          <div className="qlab__editor-pane">
-            {/* Studio Navigation & Language Bar */}
-            <div className="qlab__toolbar">
-              <div className="qlab__tabs">
-                <button
-                  type="button"
-                  className={`qlab__tab-btn ${activeTab === 'editor' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('editor')}
-                >
-                  <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M4.5 2A2.5 2.5 0 0 0 2 4.5v7A2.5 2.5 0 0 0 4.5 14h7a2.5 2.5 0 0 0 2.5-2.5v-7A2.5 2.5 0 0 0 11.5 2h-7zM3 4.5A1.5 1.5 0 0 1 4.5 3h7A1.5 1.5 0 0 1 13 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 3 11.5v-7z"/>
-                  </svg>
-                  <span>Code Editor</span>
-                </button>
-                <button
-                  type="button"
-                  className={`qlab__tab-btn ${activeTab === 'problem' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('problem')}
-                >
-                  <span>Problem Spec</span>
-                </button>
-                <button
-                  type="button"
-                  className={`qlab__tab-btn ${activeTab === 'telemetry' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('telemetry')}
-                >
-                  <span>Big-O Bounds</span>
-                </button>
+          {/* Step 2: Clear Visual Transformation (Noise vs Focus) */}
+          <div className="ql-transformation-deck">
+
+            {/* Left Card: The Problem (Without DKODER) */}
+            <div className="ql-before-card">
+              <div className="ql-card-header">
+                <span className="ql-card-badge badge--faded">WITHOUT TARGETING</span>
+                <span className="ql-card-stat">12,500+ questions</span>
               </div>
 
-              {/* Language Selector */}
-              <div className="qlab__lang-selector">
-                {(['typescript', 'python', 'cpp', 'java'] as const).map(lang => (
-                  <button
-                    key={lang}
-                    type="button"
-                    className={`qlab__lang-btn ${selectedLang === lang ? 'active' : ''}`}
-                    onClick={() => setSelectedLang(lang)}
-                  >
-                    {lang === 'typescript' ? 'TypeScript' : lang === 'python' ? 'Python' : lang === 'cpp' ? 'C++ 20' : 'Java 17'}
-                  </button>
-                ))}
+              <div className="ql-noise-list">
+                <div className="noise-item">
+                  <XCircle size={16} className="noise-x-icon" />
+                  <div className="noise-text-col">
+                    <span className="noise-item-title">LeetCode #412 Random Problems</span>
+                    <span className="noise-item-tag">Never asked by your target</span>
+                  </div>
+                </div>
+
+                <div className="noise-item">
+                  <XCircle size={16} className="noise-x-icon" />
+                  <div className="noise-text-col">
+                    <span className="noise-item-title">Obscure Graph Algorithmic Tricks</span>
+                    <span className="noise-item-tag">Irrelevant for campus drives</span>
+                  </div>
+                </div>
+
+                <div className="noise-item">
+                  <XCircle size={16} className="noise-x-icon" />
+                  <div className="noise-text-col">
+                    <span className="noise-item-title">500+ Generic Math Questions</span>
+                    <span className="noise-item-tag">Wasting hours of prep time</span>
+                  </div>
+                </div>
+
+                <div className="noise-item">
+                  <XCircle size={16} className="noise-x-icon" />
+                  <div className="noise-text-col">
+                    <span className="noise-item-title">Outdated 2017 Aptitude Papers</span>
+                    <span className="noise-item-tag">Patterns retired years ago</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="ql-noise-footer">
+                <span className="noise-warn-dot" />
+                <p className="ql-noise-explanation">
+                  Wasting 3–4 hours daily solving random questions that recruiters will never test you on.
+                </p>
               </div>
             </div>
 
-            {/* Dynamic Tab Body */}
-            {activeTab === 'editor' && (
-              <div className="qlab__code-window">
-                <div className="qlab__code-scroll">
-                  <div className="qlab__line-numbers">
-                    {codeLines.map((_, idx) => (
-                      <span key={idx} className="line-num">{idx + 1}</span>
-                    ))}
-                  </div>
-                  <pre className="qlab__code-content">
-                    <code>
-                      {codeLines.map((line, idx) => (
-                        <div key={idx} className="code-line">
-                          {line || ' '}
+            {/* Middle Divider: The Filter Action */}
+            <div className="ql-filter-bridge">
+              <div className="bridge-pill">
+                <span className="bridge-num">-{activeTarget.irrelevantCut}</span>
+                <span className="bridge-txt">noise eliminated</span>
+              </div>
+              <div className="bridge-arrow">→</div>
+            </div>
+
+            {/* Right Card: The Solution (With DKODER Target) */}
+            <div className="ql-after-card">
+              <div className="ql-card-header">
+                <span className="ql-card-badge badge--active">
+                  <span className="live-dot" />
+                  DKODER TARGET: {activeTarget.company.toUpperCase()}
+                </span>
+                <span className="ql-package-tag">{activeTarget.packageRange}</span>
+              </div>
+
+              {/* Verified Questions Preview */}
+              <div className="ql-curated-list">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTarget.id}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="curated-stack"
+                  >
+                    {activeTarget.sampleQuestions.map((q, idx) => (
+                      <div key={idx} className="curated-item">
+                        <div className="curated-item-top">
+                          <span className={`type-tag type--${q.type.toLowerCase()}`}>{q.type}</span>
+                          <span className={`diff-tag diff--${q.difficulty.toLowerCase()}`}>{q.difficulty}</span>
+                          <div className="pro-lock" title="Included in Target Pass">
+                            <Lock size={12} />
+                          </div>
                         </div>
-                      ))}
-                    </code>
-                  </pre>
-                </div>
-              </div>
-            )}
 
-            {activeTab === 'problem' && (
-              <div className="qlab__spec-window">
-                <h4 className="spec-title">{activeQuestion.title}</h4>
-                <p className="spec-desc">{activeQuestion.description}</p>
-
-                <div className="spec-section">
-                  <div className="spec-subtitle">Example Walkthrough</div>
-                  <pre className="spec-pre"><code>{activeQuestion.example}</code></pre>
-                </div>
-
-                <div className="spec-section">
-                  <div className="spec-subtitle">Constraints</div>
-                  <ul className="spec-list">
-                    {activeQuestion.constraints.map((c, i) => (
-                      <li key={i}>{c}</li>
+                        <h4 className="curated-item-title">{q.title}</h4>
+                        <p className="curated-item-insight">
+                          <CheckCircle2 size={13} className="insight-check" />
+                          <span>{q.insight}</span>
+                        </p>
+                      </div>
                     ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'telemetry' && (
-              <div className="qlab__telemetry-window">
-                <div className="telemetry-card">
-                  <span className="lbl">Time Complexity</span>
-                  <span className="val lime">{activeQuestion.timeComplexity}</span>
-                  <span className="note">Verified with micro-benchmark sandbox profiling</span>
-                </div>
-                <div className="telemetry-card">
-                  <span className="lbl">Space Complexity</span>
-                  <span className="val violet">{activeQuestion.spaceComplexity}</span>
-                  <span className="note">Auxiliary memory allocation within runtime bounds</span>
-                </div>
-                <div className="telemetry-card">
-                  <span className="lbl">Company Recurrence</span>
-                  <span className="val">{activeQuestion.companies.join(' · ')}</span>
-                  <span className="note">Reported by placed alumni in 2024–2025 hiring cycles</span>
-                </div>
-              </div>
-            )}
-
-            {/* Interactive Terminal / Test Runner Tray */}
-            <div className="qlab__test-tray">
-              <div className="qlab__test-header">
-                <div className="test-tabs">
-                  {activeQuestion.testCases.map((_, i) => (
-                    <button
-                      key={i}
-                      type="button"
-                      className={`test-tab ${activeTestIndex === i ? 'active' : ''}`}
-                      onClick={() => setActiveTestIndex(i)}
-                    >
-                      Case {i + 1}
-                    </button>
-                  ))}
-                </div>
-
-                <div className="test-actions">
-                  <button
-                    type="button"
-                    className={`run-code-btn ${executionState}`}
-                    onClick={handleRunCode}
-                    disabled={executionState === 'running'}
-                  >
-                    {executionState === 'running' ? (
-                      <>
-                        <span className="btn-spinner" />
-                        <span>Compiling & Testing...</span>
-                      </>
-                    ) : executionState === 'done' ? (
-                      <>
-                        <span>✓ Tests Passed (14ms)</span>
-                      </>
-                    ) : (
-                      <>
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                          <polygon points="3,1 11,6 3,11" />
-                        </svg>
-                        <span>Run Test Suite</span>
-                      </>
-                    )}
-                  </button>
-
-                  <a href="https://dkoder.co.in/practice" className="submit-solution-btn">
-                    <span>Submit to Judge ➔</span>
-                  </a>
-                </div>
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
-              {/* Live Test Case Output */}
-              <div className="qlab__test-console">
-                {executionState === 'done' ? (
-                  <div className="console-result success">
-                    <div className="console-verdict">
-                      <span className="verdict-tag">ACCEPTED</span>
-                      <span className="verdict-speed">Runtime: 14 ms (Beats 97.4% of submissions)</span>
-                      <span className="verdict-mem">Memory: 41.8 MB</span>
-                    </div>
-                    <div className="console-case">
-                      <span className="lbl">Input:</span>
-                      <code>{activeQuestion.testCases[activeTestIndex].input}</code>
-                    </div>
-                    <div className="console-case">
-                      <span className="lbl">Expected:</span>
-                      <code>{activeQuestion.testCases[activeTestIndex].expected}</code>
-                    </div>
-                    <div className="console-case">
-                      <span className="lbl">Actual:</span>
-                      <code className="lime">{activeQuestion.testCases[activeTestIndex].expected}</code>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="console-preview">
-                    <span className="lbl">Input Test Case:</span>
-                    <code>{activeQuestion.testCases[activeTestIndex].input}</code>
-                    <span className="lbl expected-lbl">Expected Output:</span>
-                    <code>{activeQuestion.testCases[activeTestIndex].expected}</code>
-                  </div>
-                )}
+              {/* Bottom Target Action */}
+              <div className="ql-after-foot">
+                <a href={`/pricing`} className="ql-action-primary-btn">
+                  <span>Unlock {activeTarget.company} Practice Bank</span>
+                  <ArrowRight size={16} />
+                </a>
               </div>
+
             </div>
+
           </div>
+
+          {/* Simple Footnote */}
+          <div className="ql-footer-note">
+            <span>Want to test your coding skills for free first?</span>
+            <a href="/practice/coding" className="ql-free-link">
+              Practice coding questions free, without company filters →
+            </a>
+          </div>
+
         </div>
+
       </div>
     </section>
   )

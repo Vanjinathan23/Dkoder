@@ -8,28 +8,28 @@ interface FAQItem {
 
 const FAQS: FAQItem[] = [
   {
-    q: 'How are DKoder questions tagged to specific companies?',
-    a: 'Every problem in our 1,200+ question bank is verified from actual recruitment drive memory papers, placed alumni submission reports, and campus drive patterns across 2023–2026. We track recurrence frequency so you never waste time practicing irrelevant patterns.'
+    q: 'What does it cost, and how does the 4-year flat licensing work?',
+    a: 'DKoder offers flat degree licensing: Essential at ₹1,000 or Pro at ₹2,000 for the full 4 years of engineering (₹250–₹500/yr equivalent). One payment covers the student from first-year fundamentals through final placement drives with zero annual renewals, hidden per-seat costs, or surprise invoices.'
   },
   {
-    q: 'What is the core difference between Bronze, Silver, Gold, and Super Dream tiers?',
-    a: 'Bronze provides 300 foundational questions. Silver unlocks company-filtered problem banks and our live multi-language IDE. Gold gives you the complete 1,200+ question vault with career track roadmaps and resume reviews. Super Dream includes 1-on-1 personalized mock interviews and direct recruiter referrals.'
+    q: 'How does the anti-cheat system prevent malpractice during high-stakes exams?',
+    a: 'DKoder deploys a 4-pillar integrity stack: (1) OS Focus Container intercepting tab-switching, window blurring, and DevTools; (2) 30 FPS Local WASM Neural Engine tracking posture and secondary individuals locally with zero video streams uploaded; (3) Keystroke Cadence Spectrum detecting ChatGPT copy-paste bursts; and (4) SHA-256 Cryptographic HOD Report for board-defensible audit trails.'
   },
   {
-    q: 'Can engineering colleges and universities integrate DKoder directly?',
-    a: 'Yes. Over 120 autonomous engineering institutes and university placement cells use the DKoder College LMS. Faculty and TPOs can schedule proctored coding screens, monitor batch readiness metrics, and prevent tab-switching during exams.'
+    q: 'Where do the 12,500+ questions come from, and how are they tagged?',
+    a: 'Every problem in our question bank is extracted from verified hiring assessment memory papers, placed alumni submission reports, and real drive patterns across 500+ companies. Questions are categorized by salary band (3–5 LPA, 6–10 LPA, 10–20 LPA, 20–40+ LPA), company type, and recency.'
   },
   {
-    q: 'How does the Synapse AI complexity analyzer provide feedback?',
-    a: 'When you submit or preview code in our IDE, Synapse analyzes your Abstract Syntax Tree (AST) to compute empirical time and space complexity, flags potential runtime corner cases, and suggests optimal O(N) or dual-pointer refactors.'
+    q: 'How is DKoder different from LeetCode or SkillRack?',
+    a: 'LeetCode costs ₹54,000+ ($159/yr × 4 yrs) and lacks Indian campus entrance exam tracks (TCS NQT, InfyTQ), anti-cheat proctoring, or HOD dashboards. Legacy tools like SkillRack lack modern salary band filters, on-device WASM proctoring, and modern Monaco code runners. DKoder provides full institutional LMS workflows at a fraction of the cost.'
   },
   {
-    q: 'Can I practice in multiple programming languages?',
-    a: 'DKoder supports real-time execution in TypeScript, JavaScript (Node 20), Python 3.11, C++ 20, and Java 17. Every problem comes with calibrated boilerplate and test suite harnesses for each language.'
+    q: 'Do students or colleges need to install any heavy software or browser extensions?',
+    a: 'No. DKoder operates entirely inside any modern web browser using WebAssembly and WebGL. Students write and execute code in our Monaco-powered IDE without installing compilers or extensions, ensuring zero setup friction across lab computers and personal laptops.'
   },
   {
-    q: 'What is the 7-day risk-free guarantee?',
-    a: 'If you feel DKoder has not materially accelerated your interview readiness within 7 days of subscribing to any tier, email support@dkoder.co.in for an unconditional 100% refund.'
+    q: 'How do HODs and Placement Officers use the platform for NIRF/NBA accreditation?',
+    a: 'DKoder automatically compiles department-wise placement clearance rates, problem solve distributions, and proctored assessment logs into board-defensible audit summaries formatted for NBA, NAAC, and NIRF institutional accreditation reviews.'
   }
 ]
 
@@ -44,12 +44,15 @@ export default function FAQSection() {
     <section className="faq" id="faq" aria-labelledby="faq-heading">
       <div className="container">
         <div className="faq__header">
-          <div className="tag tag--lime">FREQUENTLY ASKED QUESTIONS</div>
+          <div className="section-badge">
+            <span className="section-badge__dot" />
+            <span>Frequently Asked Questions</span>
+          </div>
           <h2 id="faq-heading" className="faq__heading">
             Everything You Need to Know
           </h2>
           <p className="faq__sub">
-            Clear answers on company tagging, subscriptions, university deployments, and interview readiness.
+            Clear answers on 4-year institutional licensing, question provenance, anti-cheat proctoring, and campus onboarding.
           </p>
         </div>
 

@@ -18,25 +18,32 @@ export interface OrbitNodeData {
 }
 
 const NODES_DATA: OrbitNodeData[] = [
-  { id: 'google',    label: 'Google',    role: 'SDE-II / Staff',     color: '#E4EE1B', radius: 2.7, speed: 0.24, size: 0.18, theta: 0.2,            inclination: 0.25, tilt: 0.15, questions: 380, focus: 'Graphs, DP & Distributed Systems', tier: 'tier1' },
-  { id: 'microsoft', label: 'Microsoft', role: 'SWE / Cloud Eng',    color: '#8875FF', radius: 2.1, speed: 0.38, size: 0.15, theta: Math.PI * 0.45,  inclination: -0.3, tilt: -0.2, questions: 320, focus: 'Trees, System Design, Azure',      tier: 'tier1' },
-  { id: 'amazon',    label: 'Amazon',    role: 'SDE-I / SDE-II',     color: '#FF7A29', radius: 3.4, speed: 0.19, size: 0.18, theta: Math.PI * 0.85,  inclination: 0.4,  tilt: 0.3,  questions: 420, focus: 'Leadership Principles, OOP & DSA', tier: 'tier1' },
-  { id: 'meta',      label: 'Meta',      role: 'E4 / Frontend SDE',  color: '#E4EE1B', radius: 1.6, speed: 0.52, size: 0.14, theta: Math.PI * 1.25,  inclination: -0.15,tilt: 0.1,  questions: 290, focus: 'Binary Search, Graphs & UI Perf', tier: 'tier1' },
-  { id: 'nvidia',    label: 'NVIDIA',    role: 'AI / CUDA Engineer', color: '#68B000', radius: 3.9, speed: 0.14, size: 0.16, theta: Math.PI * 1.65,  inclination: 0.35, tilt: -0.25,questions: 175, focus: 'Parallel Computing, C++ & Math',  tier: 'tier1' },
-  { id: 'tcs',       label: 'TCS',       role: 'Digital / Prime',    color: '#FF7A29', radius: 2.4, speed: 0.31, size: 0.14, theta: Math.PI * 0.15,  inclination: -0.4, tilt: 0.2,  questions: 510, focus: 'Quantitative Aptitude, CodeVita',  tier: 'tier2' },
-  { id: 'infosys',   label: 'Infosys',   role: 'Specialist Prog',    color: '#8875FF', radius: 3.1, speed: 0.22, size: 0.15, theta: Math.PI * 1.05,  inclination: 0.2,  tilt: -0.35,questions: 480, focus: 'InfyTQ, Dynamic Programming',      tier: 'tier2' },
-  { id: 'flipkart',  label: 'Flipkart',  role: 'SDE-1 / Machine Ops',color: '#8875FF', radius: 1.9, speed: 0.44, size: 0.13, theta: Math.PI * 1.45,  inclination: -0.25,tilt: 0.18, questions: 260, focus: 'System Architecture & High Volume',tier: 'tier1' },
+  { id: 'google',      label: 'Google',      role: 'SDE-II / Staff',     color: '#E4EE1B', radius: 2.7, speed: 0.24, size: 0.18, theta: 0.2,            inclination: 0.25, tilt: 0.15, questions: 380, focus: 'Graphs, DP & Distributed Systems', tier: 'tier1' },
+  { id: 'microsoft',   label: 'Microsoft',   role: 'SWE / Cloud Eng',    color: '#8875FF', radius: 2.1, speed: 0.38, size: 0.15, theta: Math.PI * 0.45,  inclination: -0.3, tilt: -0.2, questions: 320, focus: 'Trees, System Design, Azure',      tier: 'tier1' },
+  { id: 'amazon',      label: 'Amazon',      role: 'SDE-I / SDE-II',     color: '#FF7A29', radius: 3.4, speed: 0.19, size: 0.18, theta: Math.PI * 0.85,  inclination: 0.4,  tilt: 0.3,  questions: 420, focus: 'Leadership Principles, OOP & DSA', tier: 'tier1' },
+  { id: 'meta',        label: 'Meta',        role: 'E4 / Frontend SDE',  color: '#E4EE1B', radius: 1.6, speed: 0.52, size: 0.14, theta: Math.PI * 1.25,  inclination: -0.15,tilt: 0.1,  questions: 290, focus: 'Binary Search, Graphs & UI Perf', tier: 'tier1' },
+  { id: 'nvidia',      label: 'NVIDIA',      role: 'AI / CUDA Engineer', color: '#68B000', radius: 3.9, speed: 0.14, size: 0.16, theta: Math.PI * 1.65,  inclination: 0.35, tilt: -0.25,questions: 175, focus: 'Parallel Computing, C++ & Math',  tier: 'tier1' },
+  { id: 'servicenow',  label: 'ServiceNow',  role: 'Cloud Eng / SRE',    color: '#F5FF38', radius: 2.3, speed: 0.33, size: 0.16, theta: Math.PI * 0.65,  inclination: 0.3,  tilt: -0.15,questions: 215, focus: 'Microservices, Concurrency & Rate Limiting', tier: 'tier3' },
+  { id: 'salesforce',  label: 'Salesforce',  role: 'Platform SWE',       color: '#8875FF', radius: 3.6, speed: 0.17, size: 0.15, theta: Math.PI * 1.85,  inclination: -0.35,tilt: 0.2,  questions: 195, focus: 'Distributed Systems & Data Pipelines', tier: 'tier3' },
+  { id: 'tcs',         label: 'TCS',         role: 'Digital / Prime',    color: '#FF7A29', radius: 2.4, speed: 0.31, size: 0.14, theta: Math.PI * 0.15,  inclination: -0.4, tilt: 0.2,  questions: 510, focus: 'Quantitative Aptitude, CodeVita',  tier: 'tier2' },
+  { id: 'infosys',     label: 'Infosys',     role: 'Specialist Prog',    color: '#8875FF', radius: 3.1, speed: 0.22, size: 0.15, theta: Math.PI * 1.05,  inclination: 0.2,  tilt: -0.35,questions: 480, focus: 'InfyTQ, Dynamic Programming',      tier: 'tier2' },
+  { id: 'flipkart',    label: 'Flipkart',    role: 'SDE-1 / Machine Ops',color: '#8875FF', radius: 1.9, speed: 0.44, size: 0.13, theta: Math.PI * 1.45,  inclination: -0.25,tilt: 0.18, questions: 260, focus: 'System Architecture & High Volume',tier: 'tier1' },
 ]
 
 interface Props {
   activeTrackId?: string
 }
 
-export default function CareerOrbitCanvas({ activeTrackId = 'sde' }: Props) {
+export default function CareerOrbitCanvas({ activeTrackId = 'all' }: Props) {
   const mountRef = useRef<HTMLDivElement>(null)
   const [hoveredNode, setHoveredNode] = useState<OrbitNodeData | null>(null)
   const [tooltipPos, setTooltipPos] = useState<{ x: number; y: number } | null>(null)
   const [selectedNode, setSelectedNode] = useState<OrbitNodeData | null>(null)
+
+  const activeTrackRef = useRef(activeTrackId)
+  useEffect(() => {
+    activeTrackRef.current = activeTrackId
+  }, [activeTrackId])
 
   const handleCanvasClick = useCallback(() => {
     if (hoveredNode) {
@@ -213,6 +220,8 @@ export default function CareerOrbitCanvas({ activeTrackId = 'sde' }: Props) {
         metalness: 0.3,
         emissive: new THREE.Color(nodeData.color),
         emissiveIntensity: 0.5,
+        transparent: true,
+        opacity: 1.0,
       })
       const sphere = new THREE.Mesh(sphereGeo, sphereMat)
       sphere.userData = { nodeId: nodeData.id, data: nodeData }
@@ -243,6 +252,7 @@ export default function CareerOrbitCanvas({ activeTrackId = 'sde' }: Props) {
     // ── Inter-Node Connecting Lines (Crisp High-Contrast) ───────
     const linePairs: [number, number][] = [
       [0, 1], [0, 3], [1, 7], [2, 0], [2, 4], [3, 6], [5, 6], [6, 7],
+      [5, 2], [6, 1], [4, 5], [7, 8], [8, 9], [9, 0],
     ]
     const linePositions = new Float32Array(linePairs.length * 6)
     const lineColors = new Float32Array(linePairs.length * 6)
@@ -422,18 +432,40 @@ export default function CareerOrbitCanvas({ activeTrackId = 'sde' }: Props) {
         corona.rotation.z += 0.03
         const pulse = 1 + Math.sin(t * 2.8 + index) * 0.05
 
-        item.targetScale = (hoveredNode?.id === data.id || selectedNode?.id === data.id) ? 1.5 : 1.0
-        item.initialScale += (item.targetScale - item.initialScale) * 0.15
-        group.scale.setScalar(item.initialScale * pulse)
+        const currentTrack = activeTrackRef.current
+        const isTrackMatch = currentTrack === 'all' ||
+          (currentTrack === 'super-dream' && data.tier === 'tier1') ||
+          (currentTrack === 'cloud' && data.tier === 'tier3') ||
+          (currentTrack === 'service' && data.tier === 'tier2')
+
+        const isHovered = hoveredNode?.id === data.id
+        const isSelected = selectedNode?.id === data.id
 
         const mat = sphere.material as THREE.MeshStandardMaterial
-        if (hoveredNode?.id === data.id || selectedNode?.id === data.id) {
-          mat.emissiveIntensity = 1.4
-          corona.scale.setScalar(1.25)
+        const coronaMat = corona.material as THREE.MeshBasicMaterial
+
+        if (!isTrackMatch) {
+          item.targetScale = 0.55
+          mat.opacity = 0.25
+          mat.emissiveIntensity = 0.12
+          coronaMat.opacity = 0.12
+          corona.scale.setScalar(0.7)
+        } else if (isHovered || isSelected) {
+          item.targetScale = 1.6
+          mat.opacity = 1.0
+          mat.emissiveIntensity = 1.6
+          coronaMat.opacity = 0.95
+          corona.scale.setScalar(1.35)
         } else {
-          mat.emissiveIntensity = 0.5
-          corona.scale.setScalar(1.0)
+          item.targetScale = currentTrack !== 'all' ? 1.25 : 1.0
+          mat.opacity = 1.0
+          mat.emissiveIntensity = currentTrack !== 'all' ? 0.9 : 0.5
+          coronaMat.opacity = 0.7
+          corona.scale.setScalar(currentTrack !== 'all' ? 1.15 : 1.0)
         }
+
+        item.initialScale += (item.targetScale - item.initialScale) * 0.15
+        group.scale.setScalar(item.initialScale * pulse)
       })
 
       // Connecting lines update
