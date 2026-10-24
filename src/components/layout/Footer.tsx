@@ -70,8 +70,11 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="footer__brand">
             <Link to="/" className="footer__logo">
-              <span className="footer__logo-dk">DK</span>
-              <span className="footer__logo-oder">oder</span>
+              <img
+                src="/images/dkoder-logo-dark.png"
+                alt="DKoder Logo"
+                className="footer__logo-img"
+              />
             </Link>
             <p className="footer__tagline">
               The Placement LMS for Engineering Colleges Across India. 12,500+ verified company questions,

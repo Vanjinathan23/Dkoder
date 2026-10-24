@@ -41,25 +41,19 @@
 .footer__logo {
   display: inline-flex;
   align-items: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 800;
-  font-size: 1.5rem;
-  letter-spacing: -0.04em;
   text-decoration: none;
-  color: #FFFFFF;
+  transition: transform 0.2s ease;
 }
 
-.footer__logo-dk {
-  color: #17191C;
-  background: #F5FF38;
-  padding: 0.15rem 0.45rem;
-  border-radius: 0.35rem;
-  border: 1.5px solid #17191C;
-  margin-right: 0.2rem;
+.footer__logo:hover {
+  transform: translateY(-1px) scale(1.02);
 }
 
-.footer__logo-oder {
-  color: #FFFFFF;
+.footer__logo-img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .footer__tagline {

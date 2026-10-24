@@ -104,8 +104,16 @@ export default function Navbar() {
         <div className="navbar__inner">
           {/* Logo */}
           <Link to="/" className="navbar__logo" aria-label="DKoder Home">
-            <span className="navbar__logo-dk">DK</span>
-            <span className="navbar__logo-oder">oder</span>
+            <img
+              src="/images/dkoder-logo.png"
+              alt="DKoder"
+              className="navbar__logo-img light-only"
+            />
+            <img
+              src="/images/dkoder-logo-dark.png"
+              alt="DKoder"
+              className="navbar__logo-img dark-only"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -220,7 +228,20 @@ export default function Navbar() {
       <div className={`navbar__drawer ${mobileOpen ? 'open' : ''}`} aria-hidden={!mobileOpen}>
         <div className="navbar__drawer-content">
           <div className="navbar__drawer-header">
-            <span className="drawer-title">DKODER NAVIGATION</span>
+            <Link to="/" className="navbar__drawer-logo" onClick={() => setMobileOpen(false)}>
+              <img
+                src="/images/dkoder-logo.png"
+                alt="DKoder"
+                className="navbar__logo-img light-only"
+                style={{ height: '30px' }}
+              />
+              <img
+                src="/images/dkoder-logo-dark.png"
+                alt="DKoder"
+                className="navbar__logo-img dark-only"
+                style={{ height: '30px' }}
+              />
+            </Link>
             <button
               type="button"
               className="drawer-close"
